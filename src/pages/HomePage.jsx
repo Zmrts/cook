@@ -15,9 +15,9 @@ function HomePage() {
   const getUsers =  () => {
     const usersRef = ref(database, 'users/');onValue(usersRef, (snapshot) => {
       const data = snapshot.val();
-      console.log(data);
+
       const dataArray = Object.values(data);
-      console.log(dataArray);
+
       setUsers(dataArray);
     })
 

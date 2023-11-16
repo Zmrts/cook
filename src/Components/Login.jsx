@@ -11,8 +11,7 @@ function Login() {
         try {
             setLoad(true);
             const {user} = await signInWithEmailAndPassword(auth, email, password);
-            console.log('userInfo', user);
-            setLoad(false);
+        setLoad(false);
         } catch(err) {
             console.log('ОШИБКА', err);
         }

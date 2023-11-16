@@ -9,7 +9,6 @@ function Header() {
     const {auth} = useContext(Context);
 
     const [user] = useAuthState(auth)
-    console.log('HEADER',user)
 
 
 
