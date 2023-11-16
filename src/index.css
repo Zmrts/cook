@@ -1,0 +1,308 @@
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  font-family: 'Inter', sans-serif;
+}
+*,
+*:before,
+*:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+:focus,
+:active {
+  outline: none;
+}
+a:focus,
+a:active {
+  outline: none;
+}
+nav,
+footer,
+header,
+aside {
+  display: block;
+}
+input ::-ms-clear {
+  display: none;
+}
+button {
+  cursor: pointer;
+}
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+a,
+a:visited {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: none;
+}
+ul li {
+  list-style: none;
+}
+img {
+  vertical-align: top;
+}
+body {
+  min-width: 100vw;
+  min-height: 100vh;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+ 
+}
+#root {
+  background-image: linear-gradient(to right bottom, #d16ba5, #c760a7, #bc56aa, #ae4eae, #9d47b2, #bd3caa, #d92d9d, #f11b8c, #ff4756, #ff8900, #eec700, #a1fc07);
+width: 100vw;
+height: 100vh;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+.App {
+  overflow: hidden;
+  width: 85vw;
+  height: 96%;
+  background-color: wheat;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.App > *:not(header) {
+  padding: 1rem;
+}
+.header {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  width: 100%;
+  background-color: white;
+  height: 5%;
+  justify-content: space-between;
+}
+.date {
+  font-size: 22px;
+}
+
+.cooks_rating {
+  justify-content: space-between;
+  display: flex;
+  width: 100%;
+}
+.best-cook {
+  flex-basis: 33.3%;
+  padding: 1rem;
+  width: 360px;
+  background-color: #ecf0e6;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 10px;
+
+
+}
+.best-cook_avatar {
+  border-radius: 50%;
+  margin:  1rem 0;
+  background-color: #494449;
+  width: 175px;
+  height: 175px;
+  border: 5px solid gold;
+
+}
+.best-cook_name {
+  font-size: 28px;
+  font-weight: 000;
+  margin-bottom: 1rem;
+}
+
+.cooks-item_avatar {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+}
+
+
+.cooks {
+  border-radius: 10px;
+  flex-basis: 64%;
+  background-color: #ecf0e6;
+  padding: 1rem;
+ 
+}
+.cooks-item {
+  border: 3px solid rgb(63, 7, 7);
+  padding: 0.5rem;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+.cooks-item:nth-child(2),
+.cooks-item:nth-child(2) .cooks-item_avatar
+{
+  border: 3px solid #cd7f32;
+}
+.cooks-item:nth-child(1),
+.cooks-item:nth-child(1) .cooks-item_avatar
+{
+  border: 3px solid silver;
+}
+
+
+.cooks-item_avatar {
+  width: 50px;
+  height: 50px;
+  background-color: #494449;
+}
+
+.loader {
+  color: #fff;
+  font-family: Consolas, Menlo, Monaco, monospace;
+  font-weight: bold;
+  font-size: 78px;
+  opacity: 0.8;
+}
+.loader:before {
+  content: "{";
+  display: inline-block;
+  animation: pulse 0.4s alternate infinite ease-in-out;
+}
+.loader:after {
+  content: "}";
+  display: inline-block;
+  animation: pulse 0.4s 0.3s alternate infinite ease-in-out;
+}
+
+@keyframes pulse {
+  to {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+}
+
+
+.App {
+  position: relative;
+  min-width: 800px;
+}
+
+.overlay {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(92, 76, 76, 0.253);
+}
+
+.modal {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 500px;
+  min-height: 220px;
+  border-radius: 10px;
+  padding: 1rem;
+  padding-top: 2rem;
+  width: 60%;
+  height: 60%;
+  background-color: rgba(235, 167, 167, 0.884);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+
+}
+
+.select {
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 35px;
+}
+#coocker {
+  background-color: transparent;
+}
+
+.select_rating {
+  display: flex;
+  justify-content: space-between;
+}
+.select_rating li {
+  font-size: 1.5rem;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #eec700;
+  width: 45px;
+  height: 45px;
+  border: 3px red solid;
+  cursor: pointer;
+}
+.select_rating li:hover {
+  background-color: #ee5f00;
+}
+.select_rating li.active {
+  border-color: #0eeb20;
+}
+
+.modal button {
+  font-size: 1rem;
+  background-color: #9d47b2b4;
+  border-radius: 3px;
+  padding: 0.45rem;
+  align-self: center;
+}
+.modal button:hover {
+  background-color: #a1fc07;
+}
+.modal button:active {
+  transform: scale(0.95);
+
+}
+.close {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
+.buttons {
+  display: flex;
+  gap: 1rem;
+}
+.buttons button{
+  padding: 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  background-color: rgb(124, 124, 243);
+  color: black;
+   border-radius: 6px;
+}
+.buttons button:hover {
+  transform: scale(1.05);
+}
+
+#coocker {
+  font-size: 1rem;
+  font-weight: 600;
+  border: 1px solid gray;
+  border-radius: 7px;
+  background-color: transparent;
+}
+#coocker option {
+  background-color: rgba(182, 168, 168, 0.575);
+}
