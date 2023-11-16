@@ -20,7 +20,7 @@ const database = getDatabase();
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <BrowserRouter basename='/cook'>
+    <BrowserRouter>
     <Context.Provider value={{
         auth,
         database
