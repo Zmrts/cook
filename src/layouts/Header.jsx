@@ -1,6 +1,7 @@
-import { useContext } from "react";
+import { useContext, } from "react";
 import { Context } from "..";
 import { useAuthState } from "react-firebase-hooks/auth";
+
 
 function Header() {
 
@@ -9,6 +10,7 @@ function Header() {
     const {auth} = useContext(Context);
 
     const [user] = useAuthState(auth)
+    console.log(user);
 
 
 

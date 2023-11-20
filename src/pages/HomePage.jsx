@@ -4,6 +4,7 @@ import { Context } from "..";
 import { signOut } from "firebase/auth";
 import { ref, onValue,} from "firebase/database";
 import { Modal } from "../Components/Modal";
+import { Header } from "../layouts/Header";
 
 function HomePage() {
   const [users, setUsers] = useState([]);
@@ -52,6 +53,7 @@ const openModal = () => {
   return (
     <>
       <Modal users={users} />
+      <Header />
       <CooksRating />
       <div className="buttons">
       <button onClick={logoutFn}>ВЫЙТИ</button>

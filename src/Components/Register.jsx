@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { Form } from "./Form";
 import {createUserWithEmailAndPassword, updateProfile} from "firebase/auth";
 import { Context } from "..";
-import { getDatabase, ref, set } from "firebase/database";
+import { ref, set,} from "firebase/database";
 
 function Register() {
     const {auth, database} = useContext(Context);
@@ -15,7 +15,8 @@ function Register() {
             rating: 0,
         })
     }
-
+    
+   
     const  handleRegister = async (email, password, name) => {
    
        const newUser = await createUserWithEmailAndPassword(auth, email, password);
