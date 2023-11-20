@@ -18,9 +18,7 @@ function App() {
 
 
 
-  if (loading || load) {
-    return <Loader />;
-  }
+  
   return (
     <loadContext.Provider value={{
       load,
@@ -28,6 +26,7 @@ function App() {
       user,
     }}>
       <div className="App">
+        {(loading || load) && <Loader />}
         <AppRouter />
       </div>
     </loadContext.Provider>

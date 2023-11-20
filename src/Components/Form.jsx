@@ -4,11 +4,10 @@ function Form(props) {
     const {title, buttonTitle, handleClick} = props;
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [name, setName] = useState('');
     const [focusedInput, setFocusedInput] = useState(null);
 
     const focusedStyles = {
-        boxShadow: '-2px 2px 25px 1px rgba(172, 29, 156, 0.59)',
+        boxShadow: '0px 0px 10px 2px rgba(172, 29, 156, 0.2) inset',
         border: '1px solid #881CDA'
     }
 
@@ -20,10 +19,9 @@ function Form(props) {
         setFocusedInput(null);
     }
     const handleSubmit = async () => {
-      await  handleClick(email, password, name);
+      await  handleClick(email, password);
         setEmail('');
         setPassword('');
-        setName('');
     }
 
     const handleKeyDown = (evt) => {
@@ -35,6 +33,7 @@ function Form(props) {
     return (
         <div className="form">
             {buttonTitle && <h2 style={{alignSelf:'center'}}>{title}</h2>}
+            <p>логин</p>
             <input 
             type="email"
             value={email}
@@ -43,7 +42,8 @@ function Form(props) {
             onBlur={handleBlur}
             style={(focusedInput === 'email') ? focusedStyles :{}}
             onKeyDown={handleKeyDown}
-            placeholder="email" />
+            placeholder="example@domain.com" />
+            <p>пароль</p>
             <input 
             onFocus={() => handleFocus('password')}
             onBlur={handleBlur}
@@ -52,9 +52,13 @@ function Form(props) {
             onChange={(evt) => setPassword(evt.target.value)}
             style={(focusedInput === 'password') ? focusedStyles :{}}
             onKeyDown={handleKeyDown}
-            placeholder="password" />
+            placeholder="Пароль" />
 
-            <button ч onClick={handleSubmit}>{buttonTitle}</button>
+            <button onClick={
+                (evt) => {
+                evt.preventDefault();
+                handleSubmit();
+            }}>{buttonTitle}</button>
         </div>
     )
 }

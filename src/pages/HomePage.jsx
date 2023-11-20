@@ -51,7 +51,7 @@ const openModal = () => {
 
  
   return (
-    <>
+    <div className="home">
       <Modal users={users} />
       <Header />
       <CooksRating />
@@ -60,7 +60,9 @@ const openModal = () => {
       <button onClick={openModal}>Оценить пользователя</button>
 
       </div>
-    </>
+    </div>
+      
+    
   );
 }
 

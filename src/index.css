@@ -160,7 +160,7 @@ justify-content: center;
 }
 
 .loader {
-  color: #fff;
+  color: #5e2f6d;
   font-family: Consolas, Menlo, Monaco, monospace;
   font-weight: bold;
   font-size: 78px;
@@ -198,6 +198,8 @@ justify-content: center;
   width: 100%;
   height: 100%;
   background-color: rgba(92, 76, 76, 0.253);
+  top: 0;
+  left:0;
 }
 
 .modal {
@@ -320,9 +322,21 @@ justify-content: center;
   border: 2px solid rgba(128, 128, 128, 0.678);
   border-radius: 12px;
 }
+.form > h2 {
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
 
-.form > *:not(button) {
+.form > *:not(button)  {
   margin-bottom: 2rem;
+}
+.form > p {
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+  letter-spacing: 2px;
+
 }
 .form input {
   border-radius: 5px;
@@ -330,19 +344,31 @@ justify-content: center;
   font-size: 1.5rem;
   padding: 0.5rem;
   transition: box-shadow 0.3s ease;
+  font-weight: 300;
 }
 
 
 .form button {
-  background-color: #59198b;
+  background-color: #5a198baf;
   border-radius: 5px;
   font-size: 1rem;
   padding: 0.5rem 1rem;
   color: #fff;
-  opacity: 0.77;
-  transition: box-shadow 0.3s ease, opacity 0.3s ease;
+
+  transition: box-shadow 0.3s ease, background-color 0.3s ease;
 }
 .form button:hover {
   box-shadow: -2px 2px 15px 1px rgba(80, 34, 79, 0.59);
-  opacity: 1;
+  background-color: #59198b;
+}
+
+
+/* TEMP */
+.home {
+  position: relative;
+  padding: 10%;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
