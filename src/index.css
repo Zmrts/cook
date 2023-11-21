@@ -89,12 +89,12 @@ justify-content: center;
   justify-content: space-between;
   display: flex;
   width: 100%;
+  background-color: rgba(128, 128, 128, 0.322);
 }
 .best-cook {
   flex-basis: 33.3%;
   padding: 1rem;
   width: 360px;
-  background-color: #ecf0e6;
 
   display: flex;
   flex-direction: column;
@@ -128,7 +128,6 @@ justify-content: center;
 .cooks {
   border-radius: 10px;
   flex-basis: 64%;
-  background-color: #ecf0e6;
   padding: 1rem;
  
 }

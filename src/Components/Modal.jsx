@@ -41,7 +41,8 @@ function Modal({users}) {
        } else {
         const userRef = ref(database, `users/${coocker}`);
         const updates = {
-            rating: increment(grade)
+            rating: increment(grade),
+            quantity: increment(1),
         }
         try {
             await update(userRef, updates);
