@@ -21,7 +21,7 @@ function Modal({users}) {
             overlay.style.display = 'none';
             setCoocker('Не выбран');
             setGrade('Не выбрана');
-        }, 300);
+        }, 55);
      
        
     }

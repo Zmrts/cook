@@ -10,22 +10,28 @@ function CooksRating() {
   const {database} = useContext(Context);
 
 
- 
 
-  const getUsers = () => {
+
+  const getUsersRating = () => {
     const usersRef = ref(database,'users/');
     onValue(usersRef, (snapshot) => {
       const data = snapshot.val();
-      const dataArray = Object.values(data).sort((a,b) => 
-      b.rating - a.rating);
+      const dataArray = Object.values(data).map((item) => {
+        if (item.rating === 0 || item.quantity === 0) return {averageRating:0, ...item}
+        const averageRating = Number((item.rating / item.quantity).toFixed(2));
+        return {averageRating, ...item}
+      })
+      dataArray.sort((a,b) => b.averageRating - a.averageRating);
+      console.log(dataArray);
       setBestCooker(dataArray[0]);
-      const otherCookers = dataArray.filter((item, index) => index !== 0);
-      setUsersRating(otherCookers);
+      setUsersRating(dataArray.slice(1));
+      
+
     })
   }
 
   useEffect(() => {
-   getUsers();
+   getUsersRating();
    // eslint-disable-next-line 
   }, [])
   return (
@@ -33,7 +39,7 @@ function CooksRating() {
       <div className="best-cook">
         <div className="best-cook_avatar"></div>
         <h3 className="best-cook_name">{bestCoocker.userName}</h3>
-        <p className="best-cook_rating">РЕЙТИНГ: <span style={{fontWeight:'900'}}>{bestCoocker.rating}</span></p>
+        <p className="best-cook_rating">РЕЙТИНГ: <span style={{fontWeight:'900'}}>{bestCoocker.averageRating}</span></p>
       </div>
       <ul className="cooks">
         {!usersRating.length 
@@ -42,7 +48,7 @@ function CooksRating() {
          ( <li className="cooks-item">
           <div className="cooks-item_avatar"></div>
           <h3 className="cooks-item_name">{user.userName}</h3>
-          <p className="cooks-item_rating"> РЕЙТИНГ: {user.rating}</p>
+          <p className="cooks-item_rating"> РЕЙТИНГ: {user.averageRating}</p>
         </li>)
       )}
         

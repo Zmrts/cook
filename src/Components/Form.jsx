@@ -1,14 +1,16 @@
 import { useState } from "react";
 
 function Form(props) {
-    const {title, buttonTitle, handleClick} = props;
+    const {title, buttonTitle, handleClick, errorMessage} = props;
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [focusedInput, setFocusedInput] = useState(null);
 
+
     const focusedStyles = {
         boxShadow: '0px 0px 10px 2px rgba(172, 29, 156, 0.2) inset',
-        border: '1px solid #881CDA'
+        border: '1px solid #881CDA',
+        marginBottom: (focusedInput === 'password' && errorMessage) ? '1rem' : '1.5rem'
     }
 
     const handleFocus = (input) => {
@@ -50,9 +52,15 @@ function Form(props) {
             type="password"
             value={password}
             onChange={(evt) => setPassword(evt.target.value)}
-            style={(focusedInput === 'password') ? focusedStyles :{}}
+            style={(focusedInput === 'password') 
+            ? {...focusedStyles, marginBottom:`${errorMessage ? '1rem' : '1.5rem'}`} 
+            :{marginBottom:`${errorMessage ? '1rem' : '1.5rem'}`}}
             onKeyDown={handleKeyDown}
             placeholder="Пароль" />
+            {errorMessage && <p style={{marginBottom:'1rem', 
+            textTransform:'uppercase', 
+            color:'red',
+            fontSize:'14px'}} className="errorMessage">{errorMessage}</p>}
 
             <button onClick={
                 (evt) => {
