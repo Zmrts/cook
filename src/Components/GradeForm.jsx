@@ -8,7 +8,7 @@ function Modal({ users, user }) {
   const { database } = useContext(Context);
 
   const closeModal = (evt) => {
-    evt.preventDefault();
+    evt && evt.preventDefault();
     const overlay = document.querySelector(".overlay");
     const modal = document.querySelector(".modal");
 
@@ -17,7 +17,7 @@ function Modal({ users, user }) {
     setTimeout(() => {
       overlay.style.display = "none";
       setGrade("Не выбрана");
-    }, 55);
+    }, 10);
   };
   const gradeArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
@@ -28,7 +28,7 @@ function Modal({ users, user }) {
     if (grade === "Не выбрана" || coocker === "Не выбран") {
       alert("ОЦЕНКА ИЛИ ПОЛЬЗОВАТЕЛЬ НЕ ВЫБРАНЫ");
     } else {
-      const userRef = ref(database, `users/${user}`);
+      const userRef = ref(database, `users/${coocker}`);
       const updates = {
         rating: increment(grade),
         quantity: increment(1),
