@@ -12,7 +12,7 @@ function CooksRatingItem(props) {
     
     return (
     <li  className={`cooks-item ${index === 0 ? 'best' : ''}` }>
-              <div style={{backgroundColor:`${isCurrent ? 'green': "transparent"}`}} className="cooks-item_isCurrentCoock"></div>
+              {isCurrent && <div className="cooks-item_isCurrentCoock"></div>}
               <div className="cooks-item_avatar"></div>
               <h3 className="cooks-item_name">{userName}</h3>
               <div className="cooks-item_rating">

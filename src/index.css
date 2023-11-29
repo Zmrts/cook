@@ -128,7 +128,7 @@ height: 100%;
 .cooks_rating {
   display: flex;
   justify-content: space-between;
-  flex-basis: 45%;
+  flex-basis: 40%;
   flex-direction: column;
   gap: 0.5rem;
   height: 100%;
@@ -162,11 +162,13 @@ height: 100%;
   flex-direction: column;
   padding: 0.5rem;
   align-items: flex-start;
+  justify-content: space-evenly;
   gap: 7px;
   flex-grow: 1;
   border-radius: 10px;
   
 }
+
 
 .cooks-item.best {
  flex-basis: 100%;
@@ -210,7 +212,7 @@ height: 100%;
   border: 3px solid silver;
 }
 .cooks-item_isCurrentCoock {
-  box-shadow: 0px 0px 3px 1px rgba(0, 128, 0, 0.699) inset;
+  background-color: green;
   position: absolute;
   top: 15px;
   right: 15px;
@@ -222,22 +224,43 @@ height: 100%;
 
 .feed {
   height: 100%;
-  flex-basis: 54%;
+  flex-basis: 59%;
   display: flex;
+  flex-grow: 0;
 }
 .feed_content {
+gap: 1rem;
 display:flex;
 flex-direction: column;
 flex-grow: 1;
-flex-shrink: 0;
 justify-content: space-between;
+max-width: 100%;
 }
 
 .feed_chat {
+  flex-grow: 1;
   flex-basis: 85%;
   flex-shrink: 0;
   color: #fff;
 }
+
+.feed_chat::-webkit-scrollbar {
+  width: 5px;
+}
+.feed_chat::-webkit-scrollbar-thumb {
+ background-color: rgba(153, 151, 151);
+ opacity:0.3;
+ border-radius: 7px;
+ transition: background-color 1s ease;
+}
+.feed_chat::-webkit-scrollbar-track {
+background-color: rgba(128, 128, 128, 0.164);
+border-radius: 7px;
+}
+.feed_chat::-webkit-scrollbar-thumb:hover {
+
+ }
+
 .feed_message_field {
   display: flex;
   align-items: center;
@@ -272,6 +295,7 @@ justify-content: space-between;
 
 }
 .feed_chat {
+  overflow-y: scroll;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -279,6 +303,8 @@ justify-content: space-between;
 }
 
 .post {
+
+  max-width: 45%;
   border-radius: 10px;
   gap: 7px;
   display: flex;
@@ -306,6 +332,7 @@ justify-content: space-between;
 
 }
 .post_content{
+  white-space:break-spaces;
 
 }
 

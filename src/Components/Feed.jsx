@@ -41,7 +41,10 @@ function Feed() {
         setMessage('');     
     }
     const handleKeyDown = (evt) => {
-        if (evt.key === 'Enter') {
+        if (evt.key === 'Enter' && evt.shiftKey) {
+            evt.preventDefault();
+            setMessage((prevMsg) => prevMsg + '\n')
+        } else if (evt.key === 'Enter') {
             handleClick();
         }
     }
