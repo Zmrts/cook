@@ -8,6 +8,7 @@ function Feed() {
     
     const [message, setMessage] = useState('');
     const [posts, setPosts] = useState([]);
+    const [isAnonym, setIsAnonym] = useState(false);
 
 
 
@@ -64,10 +65,10 @@ function Feed() {
         }
     }
 
-    const sendMessage = (userName, message) => {
+    const sendMessage = async (userName, message) => {
         if (userName && message) {
             const postData = {
-                author:userName,
+                author: isAnonym ? 'Анонимно' : userName,
                 message:message,
             }
     
@@ -75,8 +76,9 @@ function Feed() {
     
             const updates = {};
             updates['/posts/' + newPostKey] = postData;
-    
-            return update(ref(database), updates);
+            await update(ref(database), updates);
+            return setIsAnonym(false);
+            
         } else {
             console.error('Ошибка при отправке сообщения');
         }
@@ -107,7 +109,14 @@ function Feed() {
             value={message}
             onChange={handleChangeText} 
             className="feed_textArea" rows='3'></textarea>
-            <button onClick={handleClick}>Отправить</button>
+            <div className="anon">
+                <p>Анонимно?</p>
+                <button onClick={() => setIsAnonym(!isAnonym)} style={{backgroundColor:`${isAnonym  ? '#6fe012' : '#ffffff8f'}`}} className="anon_button">
+                    <div style={{left:`${isAnonym ? '55%' : '5%'}`}} className="anon_button_element"></div>
+                </button>
+            </div>
+            
+            <button onClick={handleClick}></button>
             </div>
             
         </div>

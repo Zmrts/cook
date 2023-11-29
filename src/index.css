@@ -238,6 +238,7 @@ max-width: 100%;
 }
 
 .feed_chat {
+  font-size: 14px;
   flex-grow: 1;
   flex-basis: 85%;
   flex-shrink: 0;
@@ -248,7 +249,7 @@ max-width: 100%;
   width: 5px;
 }
 .feed_chat::-webkit-scrollbar-thumb {
- background-color: rgba(153, 151, 151);
+ background-color: rgba(153, 151, 151, 0.76);
  opacity:0.3;
  border-radius: 7px;
  transition: background-color 1s ease;
@@ -257,23 +258,78 @@ max-width: 100%;
 background-color: rgba(128, 128, 128, 0.164);
 border-radius: 7px;
 }
-.feed_chat::-webkit-scrollbar-thumb:hover {
-
- }
-
 .feed_message_field {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 .feed_message_field > button {
-  padding: 0.5rem;
-  background-color: #252425;
-  color: #fff;
-  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+ background-color: rgba(128, 128, 128, 0.205);
+ border: 3px solid rgb(255, 255, 255);
+ transform: scale(0.9);
+ transition: transform 0.15s ease, background-color 0.2s ease;
 }
+.feed_message_field > button::before {
+  content: '';
+  top: 17px;
+  position: absolute;
+  width: 21px;
+  height: 21px;
+
+  border: 3px solid rgb(255, 255, 255);
+  border-left: none;
+  border-bottom: none;
+  transform: rotate(-45deg);
+}
+.feed_message_field > button:hover {
+  transform: scale(1);
+  background-color: #16141493;
+}
+.anon {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  color: #e6e1e1;
+}
+.anon_button {
+  display: flex;
+  align-items: center;
+  position: relative;
+  justify-content: flex-start;
+  width: 40px;
+  height: 20px;
+  border-radius:10px;
+  padding: 2px 2px;
+
+  box-shadow: 0px 0px 2px 1px rgba(27, 30, 32, 0.2) inset;
+  transition: background-color 0.3s ease;
+}
+
+.anon_button_element {
+  position: absolute;
+  left: 5%;
+  right: unset;
+  border-radius: 10px;
+  width: 16px;
+  height: 16px;
+  background-color: #363636f1;
+  transition: left 0.25s ease, right 0.5s ease;
+}
+
+
+
+
 .feed_textArea {
-  flex-basis: 89%;
+  flex-basis: 80%;
   cursor:grab;
   font-weight: 400;
   color: #fff;
