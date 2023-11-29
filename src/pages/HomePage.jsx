@@ -5,6 +5,7 @@ import { Context } from "..";
 import { ref, onValue } from "firebase/database";
 
 import { Header } from "../layouts/Header";
+import { Feed } from "../Components/Feed";
 
 function HomePage() {
   const [users, setUsers] = useState([]);
@@ -14,9 +15,7 @@ function HomePage() {
     const usersRef = ref(database, "users/");
     onValue(usersRef, (snapshot) => {
       const data = snapshot.val();
-
       const dataArray = Object.values(data);
-
       setUsers(dataArray);
     });
   };
@@ -30,10 +29,11 @@ function HomePage() {
 
   return (
     <>
-    <Header/>
+    <Header users={users}/>
     <div className="container">
       <div className="home">
         <CooksRating users={users} />
+        <Feed />
       </div>
     
     </div>
