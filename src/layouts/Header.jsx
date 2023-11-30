@@ -1,8 +1,9 @@
-import { useContext,} from "react";
+import { useContext} from "react";
 import { Context } from "..";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { signOut } from "firebase/auth";
 import {ref, update } from "firebase/database";
+
 
 
 
@@ -11,8 +12,13 @@ function Header(props) {
 
     const dateOptions = {day: 'numeric', month:'long'};
     const date = new Date().toLocaleDateString('ru-RU', dateOptions);
-    const {auth, database} = useContext(Context);
-    const [user] = useAuthState(auth)
+    const {auth, database,} = useContext(Context);
+
+    const [user] = useAuthState(auth);
+
+
+   
+
 
     const cooksQueue = ['Мария', "Кирилл", "Карина", "Король женских писек", "Tim"];
     const logoutFn = () => {
@@ -65,7 +71,7 @@ function Header(props) {
         
         {user ? <div className="header_user">
                 <span className="user_header-info">Пользователь:{user ? user.displayName : null}</span>
-                <button onClick={updateCurrentCoock}>Update</button>
+
                 <button onClick={logoutFn}>Выйти</button>
         </div> 
         : null}

@@ -18,6 +18,8 @@ const database = getDatabase();
 
 
 
+
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <BrowserRouter>

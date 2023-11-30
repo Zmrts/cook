@@ -67,12 +67,14 @@ function Feed() {
 
     const sendMessage = async (userName, message) => {
         if (userName && message) {
+            const newPostKey = push(child(ref(database), 'posts')).key;
             const postData = {
                 author: isAnonym ? 'Анонимно' : userName,
                 message:message,
+                fullDateTime: new Date().toISOString(),
             }
     
-            const newPostKey = push(child(ref(database), 'posts')).key;
+            
     
             const updates = {};
             updates['/posts/' + newPostKey] = postData;
@@ -96,11 +98,11 @@ function Feed() {
         <div className="feed_content">
             <ul ref={chatRef} style={!posts.length ? emptyArrayStyles : {}}  className="feed_chat">
                 {posts.length 
-                ? posts.map((item) => <Post
-                message={item.message} 
+                ? posts.map((item) => <Post key={item.fullDateTime} 
                 name={item.author} 
+                message={item.message} 
                 displayName={displayName}
-                />)
+                photo={photoURL} />)
                 : <span className="preloader"></span> }
             </ul>
             <div className="feed_message_field">
@@ -110,7 +112,7 @@ function Feed() {
             onChange={handleChangeText} 
             className="feed_textArea" rows='3'></textarea>
             <div className="anon">
-                <p>Анонимно?</p>
+                <p>Анонимно</p>
                 <button onClick={() => setIsAnonym(!isAnonym)} style={{backgroundColor:`${isAnonym  ? '#6fe012' : '#ffffff8f'}`}} className="anon_button">
                     <div style={{left:`${isAnonym ? '55%' : '5%'}`}} className="anon_button_element"></div>
                 </button>
