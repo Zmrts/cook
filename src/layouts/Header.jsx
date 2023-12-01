@@ -1,8 +1,9 @@
-import { useContext} from "react";
+import { useContext, useEffect} from "react";
 import { Context } from "..";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { signOut } from "firebase/auth";
 import {ref, update } from "firebase/database";
+import { loadContext } from "../App";
 
 
 
@@ -13,8 +14,22 @@ function Header(props) {
     const dateOptions = {day: 'numeric', month:'long'};
     const date = new Date().toLocaleDateString('ru-RU', dateOptions);
     const {auth, database,} = useContext(Context);
-
     const [user] = useAuthState(auth);
+    const {setIsAdmin, isAdmin} = useContext(loadContext);
+
+    const chechIsAdmin = () => {
+      auth.currentUser.getIdTokenResult()
+        .then((idTokenResult) => {
+          if (idTokenResult.claims.admin) {
+            setIsAdmin(idTokenResult.claims.admin);
+          } else {
+            setIsAdmin(false);
+          }
+        })
+    }
+    useEffect(() => {
+      chechIsAdmin();
+    },[auth])
 
 
    
@@ -71,7 +86,7 @@ function Header(props) {
         
         {user ? <div className="header_user">
                 <span className="user_header-info">Пользователь:{user ? user.displayName : null}</span>
-
+                {isAdmin && <button onClick={updateCurrentCoock}>Update</button> }
                 <button onClick={logoutFn}>Выйти</button>
         </div> 
         : null}

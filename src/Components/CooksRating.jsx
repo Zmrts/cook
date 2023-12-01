@@ -50,9 +50,8 @@ function CooksRating(props) {
   }, []);
   return <>
   <Modal user={selectedUser} users={users} />
-    <div className="cooks_rating">
       
-      <ul style={!usersRating.length ? styleForPreloader : {}} className="cooks">
+      <ul style={!usersRating.length ? styleForPreloader : {}} className="cooks_rating">
         {!usersRating.length ? (
           <span className="preloader"></span>
         ) : (
@@ -64,7 +63,7 @@ function CooksRating(props) {
           index={index} {...user}/>)
         )}
       </ul>
-    </div>
+
     </>
 }
 

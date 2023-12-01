@@ -16,7 +16,7 @@ function App() {
   const [load, setLoad] = useState();
   const [isAdmin, setIsAdmin] = useState(null);
  
-
+  console.log(user);
 
 
 
@@ -27,7 +27,8 @@ function App() {
       load,
       setLoad,
       user,
-      isAdmin
+      isAdmin,
+      setIsAdmin
     }}>
       <div className="App">
         {(loading || load) && <Loader />}

@@ -112,13 +112,13 @@ function Feed() {
             onChange={handleChangeText} 
             className="feed_textArea" rows='3'></textarea>
             <div className="anon">
-                <p>Анонимно</p>
+                <p>Анон</p>
                 <button onClick={() => setIsAnonym(!isAnonym)} style={{backgroundColor:`${isAnonym  ? '#6fe012' : '#ffffff8f'}`}} className="anon_button">
                     <div style={{left:`${isAnonym ? '55%' : '5%'}`}} className="anon_button_element"></div>
                 </button>
             </div>
-            
             <button onClick={handleClick}></button>
+            
             </div>
             
         </div>
