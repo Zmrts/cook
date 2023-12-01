@@ -635,6 +635,7 @@ overflow-wrap: anywhere;
   .feed {
     flex-basis: 100%;
     max-height: 90vh;
+    min-height: 65vh;
   }
   .home {
     height: unset;

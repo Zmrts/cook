@@ -107,6 +107,7 @@ function Feed() {
             </ul>
             <div className="feed_message_field">
             <textarea 
+            placeholder="Сообщение..."
             onKeyDown={handleKeyDown}
             value={message}
             onChange={handleChangeText} 
