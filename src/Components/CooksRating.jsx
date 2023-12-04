@@ -41,9 +41,13 @@ function CooksRating(props) {
       });
       dataArray.sort((a, b) => b.averageRating - a.averageRating);
       setUsersRating(dataArray);
+      
     });
   };
 
+  useEffect(() => {
+    console.log(usersRating);
+  }, [usersRating])
   useEffect(() => {
     getUsersRating();
     // eslint-disable-next-line

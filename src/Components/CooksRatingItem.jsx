@@ -2,7 +2,8 @@
 function CooksRatingItem(props) {
     const {
         userName,
-        averageRating, 
+        averageRating,
+        quantity,
         index,
         openModal, 
         isCurrent,
@@ -16,6 +17,7 @@ function CooksRatingItem(props) {
               <div className="cooks-item_avatar"></div>
               <h3 className="cooks-item_name">{userName}</h3>
               <div className="cooks-item_rating">
+                <div>
                 <p>
                   {" "}
                   РЕЙТИНГ:{" "}
@@ -23,6 +25,8 @@ function CooksRatingItem(props) {
                     {averageRating}
                   </span>
                 </p>
+                <p>Количество: <span>{quantity}</span></p>
+                </div>
                 <a onClick={openModal(userName)}  href="#">
                   <svg
                     fill="#1e8c08"

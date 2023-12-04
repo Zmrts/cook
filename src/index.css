@@ -172,6 +172,15 @@ background-attachment: fixed;
   justify-content: space-between;
   align-self: stretch;
   align-items: center;
+
+}
+.cooks-item_rating > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.cooks-item_rating > div > p > span {
+  font-weight: 700;
 }
 .cooks-item_rating svg:hover {
   fill: yellow;
