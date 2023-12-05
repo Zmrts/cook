@@ -1,11 +1,31 @@
 import { useContext, useState } from "react";
 import { Context } from "..";
-import { increment, ref, update } from "firebase/database";
+import { increment, ref, update, push, child } from "firebase/database";
 
-function Modal({ users, user }) {
+
+function Modal({ user }) {
   const [grade, setGrade] = useState("Не выбрана");
 
   const { database } = useContext(Context);
+
+  const sendNote = async (toUser, grade) => {
+    if (toUser && grade) {
+        const newPostKey = push(child(ref(database), 'posts')).key;
+        const postData = {
+            toUser: toUser,
+            message:`${toUser} получил(а) оценку ${grade}`,
+            fullDateTime: new Date().toISOString(),
+            type:'note'
+        }
+
+        const updates = {};
+        updates['/posts/' + newPostKey] = postData;
+        await update(ref(database), updates);
+        
+    } else {
+        console.error('Ошибка при отправке сообщения');
+    }
+}
 
   const closeModal = (evt) => {
     evt && evt.preventDefault();
@@ -35,6 +55,7 @@ function Modal({ users, user }) {
       };
       try {
         await update(userRef, updates);
+        await sendNote(coocker, grade);
 
         setTimeout(() => {
           closeModal();

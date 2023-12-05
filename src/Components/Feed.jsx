@@ -72,6 +72,7 @@ function Feed() {
                 author: isAnonym ? 'Анонимно' : userName,
                 message:message,
                 fullDateTime: new Date().toISOString(),
+                type:'message'
             }
     
             
@@ -91,38 +92,41 @@ function Feed() {
     }, []);
 
     useEffect(() => {
-        scrollToEnd();
+       if (posts.length)  scrollToEnd();
     } , [posts])
 
-    return <div className="feed">
-        <div className="feed_content">
-            <ul ref={chatRef} style={!posts.length ? emptyArrayStyles : {}}  className="feed_chat">
-                {posts.length 
-                ? posts.map((item) => <Post key={item.fullDateTime} 
-                name={item.author} 
-                message={item.message} 
-                displayName={displayName}
-                photo={photoURL} />)
-                : <span className="preloader"></span> }
-            </ul>
-            <div className="feed_message_field">
-            <textarea 
-            placeholder="Сообщение..."
-            onKeyDown={handleKeyDown}
-            value={message}
-            onChange={handleChangeText} 
-            className="feed_textArea" rows='3'></textarea>
-            <div className="anon">
-                <p>Анон</p>
-                <button onClick={() => setIsAnonym(!isAnonym)} style={{backgroundColor:`${isAnonym  ? '#6fe012' : '#ffffff8f'}`}} className="anon_button">
-                    <div style={{left:`${isAnonym ? '55%' : '5%'}`}} className="anon_button_element"></div>
-                </button>
-            </div>
-            <button onClick={handleClick}></button>
+    return <div style={!posts.length ? emptyArrayStyles : {}}  className="feed">
+        {posts.length 
+        ? (<><ul ref={chatRef} className="feed_chat">
+        {posts.map((item) => <Post key={item.fullDateTime}
+        date={item.fullDateTime}
+        type={item.type}
+        name={item.author} 
+        message={item.message} 
+        displayName={displayName}
+        photo={photoURL} />)}
+    </ul>
+    <div className="feed_message_field">
+    <textarea 
+    placeholder="Сообщение..."
+    onKeyDown={handleKeyDown}
+    value={message}
+    onChange={handleChangeText} 
+    className="feed_textArea"></textarea>
+    <div className="anon">
+        <p>Анон</p>
+        <button onClick={() => setIsAnonym(!isAnonym)} style={{backgroundColor:`${isAnonym  ? '#6fe012' : '#ffffff8f'}`}} className="anon_button">
+            <div style={{left:`${isAnonym ? '55%' : '5%'}`}} className="anon_button_element"></div>
+        </button>
+    </div>
+    <button onClick={handleClick}></button>
+    
+    </div> </>)
+        : <span className="preloader"></span> }
             
-            </div>
+           
             
-        </div>
+        
     </div>
 }
 

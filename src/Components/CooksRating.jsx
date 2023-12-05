@@ -45,6 +45,8 @@ function CooksRating(props) {
     });
   };
 
+  
+
   useEffect(() => {
     console.log(usersRating);
   }, [usersRating])
