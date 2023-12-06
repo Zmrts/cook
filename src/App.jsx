@@ -2,21 +2,21 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { AppRouter } from "./Components/AppRouter";
 
 import { Loader } from "./Components/Loader";
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext,  useState } from "react";
 import { Context } from ".";
-import { onAuthStateChanged, updateProfile } from "firebase/auth";
-import { set } from "firebase/database";
+
+
 
 
 export const loadContext = createContext(null);
 export const usersContext = createContext(null);
 function App() {
-  const { auth, database } = useContext(Context);
+  const { auth,} = useContext(Context);
   const [user, loading, ] = useAuthState(auth);
   const [load, setLoad] = useState();
   const [isAdmin, setIsAdmin] = useState(null);
  
-  console.log(user);
+
 
 
 

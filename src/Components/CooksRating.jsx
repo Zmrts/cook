@@ -1,33 +1,18 @@
 import { useContext, useEffect, useState } from "react";
 import { Context } from "..";
-import { ref, onValue, connectDatabaseEmulator } from "firebase/database";
-import { Modal } from "./GradeForm";
+import { ref, onValue,} from "firebase/database";
 import { CooksRatingItem } from "./CooksRatingItem";
 
 
 function CooksRating(props) {
-  const {users} = props;
   const [usersRating, setUsersRating] = useState([]);
-  const [selectedUser, setSelectedUser] = useState(null);
-  const { database, auth } = useContext(Context);
+  const { database} = useContext(Context);
 
   const styleForPreloader = {
     justifyContent:'center',
     alignItems: 'center',
   }
-  
-  const openModal = (user) => (evt) => {
-    evt.preventDefault();
-    setSelectedUser(user);
-    const overlay = document.querySelector(".overlay");
-    const modal = document.querySelector(".modal");
 
-    overlay.style.display = "flex";
-    setTimeout(() => {
-      modal.style.transform = "scale(1)";
-      modal.style.opacity = "1";
-    }, 50);
-  };
 
   const getUsersRating = () => {
     const usersRef = ref(database, "users/");
@@ -47,15 +32,12 @@ function CooksRating(props) {
 
   
 
-  useEffect(() => {
-    console.log(usersRating);
-  }, [usersRating])
+
   useEffect(() => {
     getUsersRating();
     // eslint-disable-next-line
   }, []);
   return <>
-  <Modal user={selectedUser} users={users} />
       
       <ul style={!usersRating.length ? styleForPreloader : {}} className="cooks_rating">
         {!usersRating.length ? (
@@ -65,7 +47,6 @@ function CooksRating(props) {
           <CooksRatingItem 
           isCurrent={user.isCurrentCoock}
           key={user.userID} 
-          openModal={openModal}
           index={index} {...user}/>)
         )}
       </ul>
