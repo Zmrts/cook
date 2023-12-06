@@ -255,6 +255,18 @@ background-attachment: fixed;
   transition: transform 0.3s ease, right 0.3s ease, top 0.3s ease;
   top: -100%;
 }
+.close {
+  background: none;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+.close > svg path {
+  fill: lightseagreen;
+}
+.close:hover > svg path {
+  fill: red;
+}
 .grades {
   display: flex;
   min-width: 100%;
@@ -540,12 +552,6 @@ overflow-wrap: anywhere;
   color:#fff;
 
 }
-.modal > .close svg path {
-  fill:#fff;
-}
-.modal > .close:hover svg path {
-  fill:red;
-}
 
 #coocker {
   background-color: transparent;
@@ -590,11 +596,7 @@ overflow-wrap: anywhere;
   transform: scale(0.95);
 
 }
-.close {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-}
+
 
 .buttons {
   display: flex;
@@ -715,6 +717,9 @@ overflow-wrap: anywhere;
   }
   .gradeForm > .grades li {
     font-size: 1.15rem;
+  }
+  .close:hover > svg path {
+    fill: initial;
   }
   .feed {
     flex-basis: 100%;
