@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { NavLink } from "react-router-dom";
 function BuregerMenu() {
   const [isOpen, setIsOpen] = useState();
@@ -13,8 +13,21 @@ function BuregerMenu() {
     setStartTouchX(evt.touches[0].pageX);
   }
 
+  useEffect(() => {
+    const burgerList = burgerListRef.current;
+    if (startTouchX !== null) {
+        const diffX =  currentX - startTouchX;
+        requestAnimationFrame(() => {
+            burgerList.style.left = diffX < 0 ? `${diffX * 1.35}px` : 0;
+            burgerList.style.opacity = 1 + (diffX / pageWidth);
+        })
+       
+    }
+  }, [currentX])
+
   const onMove = (evt) => {
     if (startTouchX !== 0) {
+        
         const diffX = evt.touches[0].pageX - startTouchX;
         setCurrentX(diffX);
         console.log(diffX);
@@ -22,8 +35,8 @@ function BuregerMenu() {
   }
 
   const openStyles = {
-    opacity: currentX ? (1 - (currentX/pageWidth) * -1.2)  : 1,
-    left: (currentX && currentX < 0) ? currentX : 0,
+    opacity: 1,
+    left: 0,
 
   };
 
@@ -49,7 +62,7 @@ function BuregerMenu() {
       </div>
       <ul
       onTouchStart={onTouch}
-      onTouchMove={onMove}
+      onTouchMove={(evt) => setCurrentX(evt.touches[0].pageX)}
         style={isOpen ? openStyles : closeStyles}
         ref={burgerListRef}
         className="burger_list"
