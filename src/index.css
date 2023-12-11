@@ -755,7 +755,7 @@ overflow-wrap: anywhere;
   top: 100%;
   left: 0;
   transform: translateX(-100%);
-  transition:transform 0.3s ease, opacity 0.3s ease;
+  transition:transform 0.2s ease, opacity 0.2s ease;
 }
 
 .burger_list > * {
