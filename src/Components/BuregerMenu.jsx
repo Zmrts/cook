@@ -18,7 +18,7 @@ function BuregerMenu() {
     if (startTouchX !== null) {
         const diffX =  currentX - startTouchX;
         requestAnimationFrame(() => {
-            burgerList.style.left = diffX < 0 ? `${diffX * 1.35}px` : 0;
+            burgerList.style.transform = diffX < 0 ? `translateX(${diffX}px)` : 0;
             burgerList.style.opacity = 1 + (diffX / pageWidth);
         })
        
@@ -46,7 +46,14 @@ function BuregerMenu() {
   };
 
   const handleClick = () => {
-    setIsOpen(!isOpen);
+    const body = document.querySelector('body');
+    if (!isOpen) {
+        body.style.overflowY = 'hidden';
+        setIsOpen(true);
+    } else {
+        body.style.overflowY = 'visible';
+        setIsOpen(false);
+    }
   };
 
   return (
