@@ -1,3 +1,7 @@
+:root {
+  --primary-background: #80808056;
+  --primary-border-radius: 10px;
+}
 * {
   padding: 0;
   margin: 0;
@@ -57,6 +61,7 @@ body {
  
 }
 /* BASE STYLES */
+
 html, body {
   height: 100%;
 }
@@ -76,7 +81,15 @@ background-attachment: fixed;
   height: 7vh;
 }
 .header > * {
-  font-size: 20px;
+  font-size: 16px;
+}
+.header_links {
+  display: flex;
+
+  gap: 1rem;
+}
+.header_links_item {
+  color: white;
 }
 .header_user {
   display: flex;
@@ -102,7 +115,8 @@ background-attachment: fixed;
 
 
 .container {
-  padding: 0.5rem;
+  max-width: 1480px;
+  padding: 0.5rem 0;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -129,8 +143,8 @@ background-attachment: fixed;
 }
 
 .home > * {
-  background-color: rgba(128, 128, 128, 0.336);
-  border-radius: 10px;
+  background-color: var(--primary-background);
+  border-radius: var(--primary-border-radius);
 }
 .home > .cooks_rating
 {
@@ -158,7 +172,7 @@ background-attachment: fixed;
   justify-content: space-evenly;
   gap: 7px;
   flex-grow: 1;
-  border-radius: 10px;
+  border-radius: 8px;
   
 }
 
@@ -252,9 +266,11 @@ background-attachment: fixed;
   justify-self: center;
   position: absolute;
   border-radius: inherit;
-  transition: transform 0.3s ease, right 0.3s ease, top 0.3s ease;
+  transition: opacity 0.5s ease, top 0.3s ease;
   top: -100%;
+  user-select: none;
 }
+
 .close {
   background: none;
   position: absolute;
@@ -428,7 +444,7 @@ border-radius: 7px;
 .post {
 
   max-width: 60%;
-  border-radius: 10px;
+  border-radius: 8px;
   gap: 7px;
   display: flex;
   flex-direction: column;
@@ -459,6 +475,16 @@ overflow-wrap: anywhere;
 
 }
 
+/* ============== SETTINGS =============== */
+
+.settings {
+  background-color: var(--primary-background);
+  border-radius: var(--primary-border-radius);
+  display: flex;
+  width: 100%;
+  flex-grow: 1;
+
+}
 
 
 /*.App > *:not(header) {
@@ -533,69 +559,6 @@ overflow-wrap: anywhere;
   left:0;
 }
 
-.modal {
-  position: relative;
-  z-index: 9;
-  gap: 1rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  min-width: 500px;
-  min-height: 220px;
-  border-radius: 10px;
-  padding: 1rem;
-  padding-top: 2rem;
-  width: 300px;
-  height: auto;
-  background-color: #252425;
-  transition: transform 0.3s ease, opacity 0.3s ease;
-  color:#fff;
-
-}
-
-#coocker {
-  background-color: transparent;
-}
-
-.select_rating {
-  display: flex;
-  justify-content: space-between;
-  gap: 3px;
-}
-.select_rating li {
-  font-size: 1.5rem;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #50214c8a;
-  width: 40px;
-  height: 40px;
-
-  cursor: pointer;
-}
-.select_rating li:hover {
-  background-color: #ce187cbe;
-}
-.select_rating li.active {
-  background-color: #3cce18be;
-}
-
-.modal button {
-  font-size: 1rem;
-  color: #fff;
-  background-color: #4737bd85;
-  border-radius: 3px;
-  padding: 0.45rem;
-  align-self: center;
-}
-.modal button:hover {
-  background-color: #3927c0;
-}
-.modal button:active {
-  transform: scale(0.95);
-
-}
 
 
 .buttons {
@@ -696,6 +659,9 @@ overflow-wrap: anywhere;
   .header > *{
     font-size: 14px;
   }
+  .date {
+    display: none;
+  }
   .container {
     padding: 0.5rem;
   }
@@ -738,4 +704,61 @@ overflow-wrap: anywhere;
     max-width: 85%;
   }
 
+}
+
+.header {
+  position: relative;
+}
+.burger_icon {
+  cursor: pointer;
+}
+
+.burger_icon div{
+  width: 30px;
+  height: 4px;
+  background-color: white;
+  margin-bottom: 4px;
+  border-radius: 5px;
+}
+.burger_icon div {
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.burger_icon.opened div {
+  background-color: aqua;
+}
+
+.burger_icon.opened div:nth-of-type(1) {
+  background-color: red;
+  transform: rotate(-45deg) translate(-5px, 6px);
+}
+.burger_icon.opened div:nth-of-type(2) {
+  opacity: 0;
+}
+.burger_icon.opened div:nth-of-type(3) {
+  transform: rotate(45deg) translate(-5px, -6px);
+  background-color: red;
+} 
+
+.burger_list {
+  font-size: 32px;
+  opacity: 0;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  align-items: center;
+  width: 100vw;
+  height: calc(100vh - 7vh);
+  background-color: #077fffbd;
+  position: absolute;
+  top: 100%;
+  left: -100%;
+  transition: left 0.3s ease, opacity 0.3s ease;
+}
+
+.burger_list > * {
+  
+  z-index: 5;
+  color: red;  
 }

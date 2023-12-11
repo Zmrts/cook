@@ -1,6 +1,8 @@
-import { LOGIN_ROUTE, HOME_ROUTE } from "./utils/consts";
+import { HOME_ROUTE, LOGIN_ROUTE, SETTINGS_ROUTE } from "./utils/consts";
 import { LoginPage } from "./pages/LoginPage";
 
+
+import { SettingsPage } from "./pages/SettingsPage";
 import { HomePage } from "./pages/HomePage";
 
 export const publicRoutes = [
@@ -11,8 +13,16 @@ export const publicRoutes = [
 ]
 
 export const privateRoutes = [
+
+    {
+        path:SETTINGS_ROUTE,
+        Component:SettingsPage,
+        name:'settings'
+    },
     {
         path:HOME_ROUTE,
-        Component: HomePage,
+        Component:HomePage,
+        name:'home',
+        index:true
     }
 ]

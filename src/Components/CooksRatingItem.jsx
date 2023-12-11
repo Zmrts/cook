@@ -8,7 +8,9 @@ const RatingForm = (props) => {
   const [grade, setGrade] = useState("Не выбрана");
 
   const hideGradeForm = () => {
+    gradeFormRef.current.style.opacity = '0';
     gradeFormRef.current.style.top = '-100%';
+   
     setTimeout(() => {
       setIsShowForm(false);
     }, 320);
@@ -66,14 +68,19 @@ const RatingForm = (props) => {
   useEffect(() => {
     const gradeForm = gradeFormRef.current;
     if (isShowForm) {
+
       setTimeout(() => {
+        
+        gradeForm.style.opacity = '1';
         gradeForm.style.top = '0';
-      }, 10);
+        
+        
+      }, 100);
     } 
   }, [isShowForm])
 
   return (
-    <div ref={gradeFormRef} className="gradeForm">
+    <div style={{opacity:'0'}} ref={gradeFormRef} className="gradeForm">
       <button onClick={hideGradeForm} className="close">
       <svg
             xmlns="http://www.w3.org/2000/svg"
