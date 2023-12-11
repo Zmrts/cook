@@ -63,7 +63,7 @@ function BuregerMenu() {
   }, [currentX]);
 
   useEffect(() => {
-    const body = document.querySelector("body");
+    const body = document.querySelector("#root");
     if (isOpen) {
       body.classList.add('overflow');
     } else {

@@ -1,6 +1,8 @@
 :root {
   --primary-background: #80808056;
   --primary-border-radius: 10px;
+  --dark-color: #302d2d;
+  --violet-color:#aa10aa;
 }
 * {
   padding: 0;
@@ -72,7 +74,7 @@ background-attachment: fixed;
 
 /* ++++++++++++++++++++++++++++++++ */
 .header {
-  background-color: #2c2020;
+  background-color: var(--dark-color);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -710,7 +712,12 @@ overflow-wrap: anywhere;
   position: relative;
 }
 .burger_icon {
+  display: flex;
+  flex-direction: column;
   cursor: pointer;
+  border: 1px solid var(--violet-color);
+  padding: 0.5rem;
+  border-radius: 6px;
 }
 
 .burger_icon div{
@@ -719,6 +726,9 @@ overflow-wrap: anywhere;
   background-color: white;
   margin-bottom: 4px;
   border-radius: 5px;
+}
+.burger_icon div:last-of-type {
+  margin-bottom: 0;
 }
 .burger_icon div {
   transition: transform 0.05s ease, background-color 0.05s ease;
@@ -729,7 +739,7 @@ overflow-wrap: anywhere;
 }
 
 .burger_icon.opened div:nth-of-type(1) {
-  background-color: red;
+  background-color: var(--violet-color);
   transform: rotate(-45deg) translate(-5px, 6px);
 }
 .burger_icon.opened div:nth-of-type(2) {
@@ -737,7 +747,7 @@ overflow-wrap: anywhere;
 }
 .burger_icon.opened div:nth-of-type(3) {
   transform: rotate(45deg) translate(-5px, -6px);
-  background-color: red;
+  background-color: var(--violet-color);
 } 
 
 .burger_list {
@@ -747,10 +757,10 @@ overflow-wrap: anywhere;
   display: flex;
   flex-direction: column;
   padding: 1rem;
-  align-items: center;
+  align-items: flex-start;
   width: 100vw;
   height: calc(100vh - 7vh);
-  background-color: #077fffbd;
+  background-color: var(--dark-color);
   position: absolute;
   top: 100%;
   left: 0;
@@ -761,11 +771,15 @@ overflow-wrap: anywhere;
 .burger_list > * {
   
   z-index: 5;
-  color: red;  
+  color: #fff;  
+}
+.burger_list > *.active {
+  color: var(--violet-color);
 }
 
-body.overflow {
+#root.overflow {
   max-height: 100vh;
   overflow-y: hidden;
   position: fixed;
+  width: 100%;
 }
