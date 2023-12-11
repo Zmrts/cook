@@ -763,3 +763,8 @@ overflow-wrap: anywhere;
   z-index: 5;
   color: red;  
 }
+
+body.overflow {
+  max-height: 100vh;
+  overflow-y: hidden;
+}

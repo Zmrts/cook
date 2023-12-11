@@ -36,7 +36,7 @@ function BuregerMenu() {
     if (startTouchX !== null) {
       const burgerList = burgerListRef.current;
       setTimeout(() => {
-        const diffX = (currentX - startTouchX) * -1 > pageWidth / 2;
+        const diffX = (currentX - startTouchX) * -1 > pageWidth / 3;
         if (diffX) {
           setIsOpen(false);
         } else {
@@ -49,24 +49,25 @@ function BuregerMenu() {
 
   useEffect(() => {
     const burgerList = burgerListRef.current;
+     const diffX = currentX - startTouchX;
     if (startTouchX !== null) {
-      const diffX = currentX - startTouchX;
-      requestAnimationFrame(() => {
-        burgerList.style.transform =
-          diffX < 0 ? `translateX(${diffX * 1.3}px)` : 0;
-        burgerList.style.opacity = 1 + diffX / pageWidth;
-      });
+     
+     setTimeout(() => {
+         requestAnimationFrame(() => {
+           burgerList.style.transform =
+             diffX < 0 ? `translateX(${diffX * 1.3}px)` : 0;
+           burgerList.style.opacity = 1 + diffX / pageWidth;
+         });
+     }, 10);
     }
   }, [currentX]);
 
   useEffect(() => {
     const body = document.querySelector("body");
     if (isOpen) {
-      body.style.maxHeight = "100vh";
-      body.style.overflowY = "hidden";
+      body.classList.add('overflow');
     } else {
-      body.style.maxHeight = "unset";
-      body.style.overflowY = "visible";
+        body.classList.remove('overflow');
     }
   }, [isOpen]);
 
