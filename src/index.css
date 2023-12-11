@@ -753,8 +753,9 @@ overflow-wrap: anywhere;
   background-color: #077fffbd;
   position: absolute;
   top: 100%;
-  left: -100%;
-  transition: left 0.3s ease, opacity 0.3s ease;
+  left: 0;
+  transform: translateX(-100%);
+  transition:transform 0.3s ease, opacity 0.3s ease;
 }
 
 .burger_list > * {

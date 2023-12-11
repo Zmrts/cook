@@ -9,11 +9,25 @@ function BuregerMenu() {
   console.log(pageWidth);
 
   const burgerListRef = useRef(null);
+
   const onTouch = (evt) => {
     setStartTouchX(evt.touches[0].pageX);
   }
 
-  useEffect(() => {
+  const handleOnTouchEnd = () => {
+    if (startTouchX !== null) {
+        const burgerList = burgerListRef.current;
+        const diffX = (currentX - startTouchX) * -1 > pageWidth/2;
+        if (diffX) {
+            setIsOpen(false);
+        } else {
+            burgerList.style.transform ='translateX(0)';
+            burgerList.style.opacity ='1';
+        }
+        
+    }
+  }
+   useEffect(() => {
     const burgerList = burgerListRef.current;
     if (startTouchX !== null) {
         const diffX =  currentX - startTouchX;
@@ -25,32 +39,29 @@ function BuregerMenu() {
     }
   }, [currentX])
 
-  const onMove = (evt) => {
-    if (startTouchX !== 0) {
-        
-        const diffX = evt.touches[0].pageX - startTouchX;
-        setCurrentX(diffX);
-        console.log(diffX);
-    }
-  }
+
 
   const openStyles = {
     opacity: 1,
-    left: 0,
+    transform: 'translateX(0)'
+
 
   };
 
   const closeStyles = {
     opacity: 0,
-    left: "-100%",
+    transform: 'translateX(-100%)'
+
   };
 
   const handleClick = () => {
     const body = document.querySelector('body');
     if (!isOpen) {
+        body.style.maxHeight = '100vh'
         body.style.overflowY = 'hidden';
         setIsOpen(true);
     } else {
+        body.style.maxHeight = 'unset';
         body.style.overflowY = 'visible';
         setIsOpen(false);
     }
@@ -70,6 +81,7 @@ function BuregerMenu() {
       <ul
       onTouchStart={onTouch}
       onTouchMove={(evt) => setCurrentX(evt.touches[0].pageX)}
+      onTouchEnd={handleOnTouchEnd}
         style={isOpen ? openStyles : closeStyles}
         ref={burgerListRef}
         className="burger_list"
