@@ -767,4 +767,5 @@ overflow-wrap: anywhere;
 body.overflow {
   max-height: 100vh;
   overflow-y: hidden;
+  position: fixed;
 }
