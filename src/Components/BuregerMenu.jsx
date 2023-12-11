@@ -53,7 +53,7 @@ function BuregerMenu() {
       const diffX = currentX - startTouchX;
       requestAnimationFrame(() => {
         burgerList.style.transform =
-          diffX < 0 ? `translateX(${diffX * 1}px)` : 0;
+          diffX < 0 ? `translateX(${diffX * 1.3}px)` : 0;
         burgerList.style.opacity = 1 + diffX / pageWidth;
       });
     }

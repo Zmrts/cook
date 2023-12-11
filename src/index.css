@@ -721,7 +721,7 @@ overflow-wrap: anywhere;
   border-radius: 5px;
 }
 .burger_icon div {
-  transition: transform 0.3s ease, background-color 0.3s ease;
+  transition: transform 0.05s ease, background-color 0.05s ease;
 }
 
 .burger_icon.opened div {
