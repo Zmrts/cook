@@ -1,80 +1,88 @@
 import { useEffect, useRef, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 function BuregerMenu() {
   const [isOpen, setIsOpen] = useState(false);
-  const [startTouchX, setStartTouchX] = useState(null);
-  const [currentX, setCurrentX] = useState(null);
+  const [startX, setStartX] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
+  const [offset, setOffset] = useState();
+
+  const {pathname} = useLocation();
+
 
   const burgerListRef = useRef(null);
 
   const pageWidth = window.innerWidth;
 
+  const commonTransition = !isDragging
+    ? "transform 0.2s ease"
+    : "none";
   const openStyles = {
-    opacity: 1,
     transform: "translateX(0)",
+    transition: commonTransition,
   };
 
   const closeStyles = {
-    opacity: 0,
     transform: "translateX(-100%)",
+    transition: commonTransition,
   };
 
-  const handleClick = () => {
+  const handleShowMenu = () => {
     setIsOpen(!isOpen);
   };
 
-  const onTouch = (evt) => {
-    setStartTouchX(evt.touches[0].pageX);
-  };
-  const handleClickToLink = () => {
-    setTimeout(() => {
-      setIsOpen(false);
-    }, 50);
+  const handleTouchStart = (evt) => {
+    setStartX(evt.touches[0].clientX);
+    setIsDragging(true);
   };
 
-  const handleOnTouchEnd = () => {
-    if (startTouchX !== null) {
-      const burgerList = burgerListRef.current;
+  const handleTouchMove = (evt) => {
+    const currentX = evt.touches[0].clientX;
+    const offsetX = (currentX - startX);
+    setOffset(offsetX);
+
+    requestAnimationFrame(() => {
+      if (burgerListRef.current) {
+        burgerListRef.current.style.transform = `translateX(${offsetX < 0 ? offsetX : 0}px)`;
+      }
+    });
+  };
+
+ 
+
+  const handleTouchEnd = (evt) => {
+    console.log(offset);
+    if (offset && (offset * - 1) > pageWidth / 2) {
       setTimeout(() => {
-        const diffX = (currentX - startTouchX) * -1 > pageWidth / 3;
-        if (diffX) {
-          setIsOpen(false);
-        } else {
-          burgerList.style.transform = "translateX(0)";
-          burgerList.style.opacity = "1";
-        }
+        setIsOpen(false);
+      }, 20);
+    } 
+    if (offset && (offset * - 1) < pageWidth / 2) {
+        console.log('На открытие')
+      setTimeout(() => {
+        burgerListRef.current.style.transform = "translateX(0)";
       }, 20);
     }
+    setIsDragging(false);
   };
 
-  useEffect(() => {
-    const burgerList = burgerListRef.current;
-     const diffX = currentX - startTouchX;
-    if (startTouchX !== null) {
-     
-     setTimeout(() => {
-         requestAnimationFrame(() => {
-           burgerList.style.transform =
-             diffX < 0 ? `translateX(${diffX * 1.3}px)` : 0;
-           burgerList.style.opacity = 1 + diffX / pageWidth;
-         });
-     }, 10);
-    }
-  }, [currentX]);
+  const handleLinkClick = (evt) => {
+    evt.stopPropagation();
+    setIsOpen(false);
+  }
 
   useEffect(() => {
     const body = document.querySelector("#root");
     if (isOpen) {
-      body.classList.add('overflow');
+      body.classList.add("overflow");
     } else {
-        body.classList.remove('overflow');
+      body.classList.remove("overflow");
     }
   }, [isOpen]);
 
   return (
     <div className="burger">
       <div
-        onClick={handleClick}
+        onClick={handleShowMenu}
         style={{ zIndex: "1000" }}
         className={`burger_icon ${isOpen && "opened"}`}
       >
@@ -83,19 +91,15 @@ function BuregerMenu() {
         <div className="burger_icon_item"></div>
       </div>
       <ul
-        onTouchStart={onTouch}
-        onTouchMove={(evt) => setCurrentX(evt.touches[0].pageX)}
-        onTouchEnd={handleOnTouchEnd}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
         style={isOpen ? openStyles : closeStyles}
         ref={burgerListRef}
         className="burger_list"
       >
-        <NavLink onClick={handleClickToLink} to="/">
-          Главная
-        </NavLink>
-        <NavLink onClick={handleClickToLink} to="/settings">
-          Настройки
-        </NavLink>
+        <NavLink onClick={handleLinkClick} to="/">Главная</NavLink>
+        <NavLink onClick={handleLinkClick} to="/settings">Настройки</NavLink>
       </ul>
     </div>
   );
