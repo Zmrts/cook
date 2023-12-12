@@ -51,7 +51,7 @@ function BuregerMenu() {
 
   const handleTouchEnd = (evt) => {
     console.log(offset);
-    if (offset && (offset * - 1) > pageWidth / 2) {
+    if (offset && (offset * - 1) > pageWidth / 3.2) {
       setTimeout(() => {
         setIsOpen(false);
       }, 20);
