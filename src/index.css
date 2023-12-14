@@ -3,6 +3,7 @@
   --primary-border-radius: 10px;
   --dark-color: #302d2d;
   --violet-color:#aa10aa;
+  --seaColor: #00fff3;
 }
 * {
   padding: 0;
@@ -91,13 +92,44 @@ background-attachment: fixed;
   gap: 1rem;
 }
 .header_links_item {
+  font-size: 18px;
+  position: relative;
   color: white;
+  font-weight: 300;
+  letter-spacing: 2px;
+  line-height: 20px;
+
 }
+.header_links_item:hover {
+  color:rgb(0 255 243);
+}
+.header_links_item.active {
+  color: rgb(0 255 243);
+}
+
+
+.header_links_item::before  {
+  position: absolute;
+  content: '';
+  bottom: 0;
+  left: 0;
+  transform: translateY(20px);
+  opacity: 0;
+  width: 100%;
+  height: 2px;
+  background-color: transparent;
+  transition: transform 0.2s ease-in-out, opacity 0.4s ease;
+}
+.header_links_item.active::before {
+  background-color: #00fff3;
+  transform: translateY(4px);
+  opacity: 1;
+}
+
 .header_user {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-
 }
 
 .header_user > button {

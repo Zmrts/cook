@@ -29,10 +29,7 @@ window.addEventListener('resize', handleResize);
 useLayoutEffect(handleResize, [])
 
 
-  const activeLinkStyles = {
-    color:'#12dced',
 
-  }
   const checkIsAdmin = () => {
     auth.currentUser.getIdTokenResult().then((idTokenResult) => {
       if (idTokenResult.claims.admin) {
@@ -103,8 +100,8 @@ useLayoutEffect(handleResize, [])
         {isShowBurger 
         ? <BuregerMenu /> 
         : <div className="header_links">
-        <NavLink style={({isActive}) => (isActive ? activeLinkStyles : {color:'white'})} className='header_links_item' to="/">Главная</NavLink>
-        <NavLink style={({isActive}) => (isActive ? activeLinkStyles : {color:'white'})}  className='header_links_item' to="/settings">Настройки</NavLink>
+        <NavLink className='header_links_item' to="/">Главная</NavLink>
+        <NavLink className='header_links_item' to="/settings">Настройки</NavLink>
         </div>  }
 
         

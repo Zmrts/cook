@@ -29,8 +29,7 @@ function AppRouter() {
                     key={path}
                     className={name}
                     initial={{ opacity:0.2, }}
-                    animate={{opacity:1,  }}
-                    exit={{ transform:'translateX(100%)' }}
+                    animate={{opacity:1,  }} 
                     transition={{duration:0.3, ease:[0.25, 0.1, 0.25, 0.1]}}
                 >
                   <Component />
