@@ -101,10 +101,10 @@ background-attachment: fixed;
 
 }
 .header_links_item:hover {
-  color:var(--violet-color);
+  color: var(--seaColor);
 }
 .header_links_item.active {
-  color: var(--violet-color);
+  color: var(--seaColor);
 }
 
 
@@ -121,7 +121,7 @@ background-attachment: fixed;
   transition: transform 0.4s ease-in-out, opacity 0.4s ease;
 }
 .header_links_item.active::before {
-  background-color: var(--violet-color);
+  background-color: var(--seaColor);
   transform: translateY(4px);
   opacity: 1;
 }
