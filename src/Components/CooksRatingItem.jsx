@@ -62,7 +62,7 @@ const RatingForm = (props) => {
     setGrade(grade);
   };
 
-  const grades = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  const grades = Array.from({length:10}, (el, index) => index + 1);
 
   useEffect(() => {
     const handleClickOutside = (evt) => {

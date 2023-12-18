@@ -8,8 +8,8 @@ function Form(props) {
 
 
     const focusedStyles = {
-        boxShadow: '0px 0px 10px 2px rgba(172, 29, 156, 0.2) inset',
-        border: '1px solid #881CDA',
+        boxShadow: '0px 0px 10px 2px #22222266 inset',
+        borderColor: '#ffffffb0',
         marginBottom: (focusedInput === 'password' && errorMessage) ? '1rem' : '1.5rem'
     }
 
@@ -41,7 +41,7 @@ function Form(props) {
             value={email}
             onChange={(evt) => setEmail(evt.target.value)}
             onFocus={() => handleFocus('email')}
-            onBlur={handleBlur}
+            onBlur={handleBlur} 
             style={(focusedInput === 'email') ? focusedStyles :{}}
             onKeyDown={handleKeyDown}
             placeholder="example@domain.com" />
@@ -53,13 +53,13 @@ function Form(props) {
             value={password}
             onChange={(evt) => setPassword(evt.target.value)}
             style={(focusedInput === 'password') 
-            ? {...focusedStyles, marginBottom:`${errorMessage ? '1rem' : '1.5rem'}`} 
-            :{marginBottom:`${errorMessage ? '1rem' : '1.5rem'}`}}
+            ? {...focusedStyles,  marginBottom:`${errorMessage ? '1rem' : '1.5rem'}`} 
+            :{marginBottom:`${errorMessage ? '1rem' : '1.5rem'}`, }}
             onKeyDown={handleKeyDown}
             placeholder="Пароль" />
             {errorMessage && <p style={{marginBottom:'1rem', 
             textTransform:'uppercase', 
-            color:'red',
+            color:'#f4cb03',
             fontSize:'14px'}} className="errorMessage">{errorMessage}</p>}
 
             <button onClick={

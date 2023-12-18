@@ -101,10 +101,10 @@ background-attachment: fixed;
 
 }
 .header_links_item:hover {
-  color:rgb(0 255 243);
+  color:var(--violet-color);
 }
 .header_links_item.active {
-  color: rgb(0 255 243);
+  color: var(--violet-color);
 }
 
 
@@ -118,10 +118,10 @@ background-attachment: fixed;
   width: 100%;
   height: 2px;
   background-color: transparent;
-  transition: transform 0.2s ease-in-out, opacity 0.4s ease;
+  transition: transform 0.4s ease-in-out, opacity 0.4s ease;
 }
 .header_links_item.active::before {
-  background-color: #00fff3;
+  background-color: var(--violet-color);
   transform: translateY(4px);
   opacity: 1;
 }
@@ -625,23 +625,22 @@ overflow-wrap: anywhere;
 
 .login {
   justify-content: space-evenly;
-  min-width: 500px;
-  min-height: 250px;
-  background-color: #fff;
+  background-color: transparent;
   display: flex;
   flex-direction: column;
   align-items: center;
   height: 100vh;
-  width: 65%;
+  width: 100%;
   margin-left: auto;
 }
 
 .form {
+  background-color: var(--primary-background);
   position: relative;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  padding: 2rem;
+  padding: 3rem;
   border: 2px solid rgba(128, 128, 128, 0.678);
   border-radius: 12px;
 }
@@ -662,18 +661,26 @@ overflow-wrap: anywhere;
 
 }
 .form input {
-  border-radius: 5px;
-  border: 1px solid rgba(0, 0, 0, 0.61);
+  border-radius: 8px;
+  border: 3px solid #ffffff6b;
   font-size: 1.5rem;
   padding: 0.5rem;
-  transition: box-shadow 0.3s ease;
+  transition: box-shadow 0.3s ease, border 0.3s ease;
   font-weight: 300;
-  margin-top: 7px;
+  margin-top: 10px;
+  color: #fff;
+  background-color: #8080801e;
+}
+.form input::placeholder {
+  color: #ffffff6e;
+}
+.form h2, p {
+  color: #fff;
 }
 
 
 .form button {
-  background-color: #5a198baf;
+  background-color: #19348baf;
   border-radius: 5px;
   font-size: 1rem;
   padding: 0.5rem 1rem;
@@ -682,14 +689,25 @@ overflow-wrap: anywhere;
   transition: box-shadow 0.3s ease, background-color 0.3s ease;
 }
 .form button:hover {
-  box-shadow: -2px 2px 15px 1px rgba(80, 34, 79, 0.59);
-  background-color: #59198b;
+  box-shadow: 0px 0px 10px 2px #19348bdb;
+  background-color: #19348bdb;
 }
 
 
 
 /* MOBILE =========== */ 
 @media only screen and (max-width:768px) {
+  
+  .form {
+    width: 350px;
+    padding: 3rem 1.5rem;
+  }
+  .form input {
+    font-size: 1rem;
+    padding: 0.35rem;
+  }
+
+
   .header > *{
     font-size: 14px;
   }

@@ -3,10 +3,11 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { Context } from "..";
 import { useContext, useState } from "react";
 import { loadContext } from "../App";
+import { Loader } from "./Loader";
 
 function Login() {
   const { auth } = useContext(Context);
-  const { setLoad } = useContext(loadContext);
+  const { setLoad, loading, load } = useContext(loadContext);
   const [errorMessage, setErrorMessage] = useState('');
   const handleLogin = async (email, password) => {
     try {
@@ -51,7 +52,9 @@ function Login() {
 
   return (
     <div className="login">
-      <Form errorMessage={errorMessage} title="Вход" buttonTitle="Войти" handleClick={handleLogin} />
+      {!(loading)
+       ? <Form errorMessage={errorMessage} title="Вход" buttonTitle="Войти" handleClick={handleLogin} /> 
+      : null}
     </div>
   );
 }

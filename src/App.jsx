@@ -42,6 +42,7 @@ function App() {
       setLoad,
       user,
       users,
+      loading,
       isAdmin,
       setIsAdmin
     }}>
