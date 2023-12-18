@@ -47,7 +47,7 @@ function App() {
       setIsAdmin
     }}>
       <div className="App">
-        {!(loading || load) && <Loader />}
+        {(loading || load) && <Loader />}
         <AppRouter />
       </div>
     </loadContext.Provider>
