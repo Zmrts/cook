@@ -591,6 +591,7 @@ overflow-wrap: anywhere;
   background-color: rgba(92, 76, 76, 0.253);
   top: 0;
   left:0;
+  backdrop-filter: blur(2.5px);
 }
 
 
