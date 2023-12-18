@@ -642,7 +642,7 @@ overflow-wrap: anywhere;
   flex-direction: column;
   padding: 3rem;
   border-radius: 12px;
-  box-shadow: 0px 0px 8px 4px var(--primary-background);
+  border: 1px solid gray;
 }
 .form > h2 {
   font-weight: 300;
