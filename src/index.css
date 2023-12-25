@@ -4,6 +4,7 @@
   --dark-color: #302d2d;
   --violet-color:#aa10aa;
   --seaColor: #00fff3;
+  --settingsListHover:#0dff58e6;
 }
 * {
   padding: 0;
@@ -71,6 +72,7 @@ html, body {
 body {
 background-image: linear-gradient(to right top, #b556c9, #7555b3, #3c4b92, #113c6a, #072a41);
 background-attachment: fixed;
+overflow: hidden;
 }
 
 /* ++++++++++++++++++++++++++++++++ */
@@ -111,12 +113,12 @@ background-attachment: fixed;
 .header_links_item::before  {
   position: absolute;
   content: '';
-  bottom: 0;
+  bottom: -3px;
   left: 0;
   transform: translateY(20px);
   opacity: 0;
   width: 100%;
-  height: 2px;
+  height: 3px;
   background-color: transparent;
   transition: transform 0.4s ease-in-out, opacity 0.4s ease;
 }
@@ -509,16 +511,7 @@ overflow-wrap: anywhere;
 
 }
 
-/* ============== SETTINGS =============== */
 
-.settings {
-  background-color: var(--primary-background);
-  border-radius: var(--primary-border-radius);
-  display: flex;
-  width: 100%;
-  flex-grow: 1;
-
-}
 
 
 /*.App > *:not(header) {
@@ -756,6 +749,7 @@ overflow-wrap: anywhere;
     max-width: 85%;
   }
 
+
 }
 
 .header {
@@ -831,4 +825,159 @@ overflow-wrap: anywhere;
   overflow-y: hidden;
   position: fixed;
   width: 100%;
+}
+
+
+
+/* ============== SETTINGS =============== */
+
+.settings {
+  padding: 1rem;
+  background-color: var(--primary-background);
+  border-radius: var(--primary-border-radius);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  flex-grow: 1;
+  color: #fff;
+  flex-wrap: wrap;
+  width: 100%;
+
+}
+
+.settings_title {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  gap: 1rem;
+  align-items: center;
+  color: #fff;
+  margin: 0.5rem 0 1rem 0;
+  align-self: flex-start;
+  padding: 0 0.5rem;
+  
+}
+
+.settings_title > svg {
+  width: 35px;
+  height: 35px;
+}
+.settings_title > svg path {
+  fill: #fff;
+}
+.settings_subtitle {
+ 
+  padding: 0.5rem;
+  text-align: center;
+  width: 100%;
+  align-self: center;
+  background-color: rgba(128, 128, 128, 0.616);
+
+}
+.settings_content {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  gap: 2rem;
+}
+.settings_list {
+  border: 2px solid #ffffff48;
+  border-radius: 10px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 30%;
+  flex-basis: 20%;
+  flex-shrink: 0;
+}
+.settings_list_link {
+  user-select: none;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: #fff;
+  width: 100%;
+  padding: 0.75rem 1.75rem ;
+}
+.settings_list_link svg  {
+  width: 24px;
+  height: 24px;
+}
+.settings_list_link svg path {
+  fill: white;
+}
+.settings_list_link:hover, 
+.settings_list_link.active {
+  background-color: #2524252f;
+}
+.settings_list_link,
+.settings_list_link > svg path, 
+.settings_list_link > span,
+.settings_list_link > svg {
+  transition: all 0.25s ease;
+}
+/* .settings_list_link:hover > svg {
+transform: scale(1.1);
+} */
+.settings_list_link:hover >  svg path,
+.settings_list_link.active > svg path {
+  fill: var(--settingsListHover);
+
+}
+.settings_list_link:hover > span,
+.settings_list_link.active > span {
+  color: var(--settingsListHover);
+}
+.settings_list_link:active {
+  transform: scale(0.9);
+}
+
+.setting {
+  margin: 0 auto;
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+}
+
+.setting_input {
+  display: flex;
+  align-items: center;
+}
+.setting_input > input {
+  color: #fff;
+  padding: 3px 5px;
+  background-color: transparent;
+  border: 1px solid #fff;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.setting_button_save {
+  align-self: center;
+  padding: 0.5rem 0.75rem;
+  font-weight: 600;
+  border-radius: 15px;  
+  transition: all 0.15s ease;
+
+  
+}
+.setting_button_save:hover {
+  background-color: #3fe964;
+ 
+}
+.setting_button_save:active{
+  transform: scale(0.95);
+}
+
+@media only screen and (max-width:768px) {
+  .settings_content {
+    flex-direction: column;
+  }
+  .settings_list {
+    max-width: none;
+    flex-basis: none;
+  }
 }

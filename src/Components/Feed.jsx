@@ -1,21 +1,22 @@
 import { child, onValue, push, ref, update } from "firebase/database";
 import { useContext, useEffect, useRef, useState } from "react"
 import { Context } from "..";
-import { loadContext } from "../App";
 import { Post } from "./Post";
+import { AuthContext } from "../hoc/AuthProvider";
 
 function Feed() {
     
     const [message, setMessage] = useState('');
     const [posts, setPosts] = useState([]);
     const [isAnonym, setIsAnonym] = useState(false);
-
-
-
-
     const {database} = useContext(Context);
-    const {user} = useContext(loadContext);
-    const {displayName, photoURL} = user;
+
+
+
+
+    const {user} = useContext(AuthContext);
+    const {photoURL, displayName} = user;
+
 
     const chatRef = useRef(null);
 
@@ -24,7 +25,6 @@ function Feed() {
         alignItems:'center',
         justifyContent:'center'
     }
-
 
     const getPosts = () => {
         const postsRef = ref(database, 'posts/');
@@ -40,6 +40,8 @@ function Feed() {
         })
     }
 
+    
+
     const scrollToEnd = () => {
         const scrollHeight = chatRef.current.scrollHeight;
         chatRef.current.scrollTo({
@@ -53,7 +55,7 @@ function Feed() {
    
     }
     const  handleClick = async () => {
-        await sendMessage(user.displayName, message);
+        await sendMessage(displayName, message);
         setMessage('');     
     }
     const handleKeyDown = (evt) => {
@@ -65,11 +67,11 @@ function Feed() {
         }
     }
 
-    const sendMessage = async (userName, message) => {
-        if (userName && message) {
+    const sendMessage = async (authorName, message) => {
+        if (authorName && message) {
             const newPostKey = push(child(ref(database), 'posts')).key;
             const postData = {
-                author: isAnonym ? 'Анонимно' : userName,
+                author: isAnonym ? 'Анонимно' : authorName,
                 message:message,
                 fullDateTime: new Date().toISOString(),
                 type:'message'
@@ -86,25 +88,25 @@ function Feed() {
             console.error('Ошибка при отправке сообщения');
         }
     }
+    useEffect(() => getPosts(), []);
 
     useEffect(() => {
-        getPosts();
-    }, []);
-
-    useEffect(() => {
-       if (posts.length)  scrollToEnd();
+       if (posts && posts.length)  scrollToEnd();
     } , [posts])
 
     return <div style={!posts.length ? emptyArrayStyles : {}}  className="feed">
         {posts.length 
         ? (<><ul ref={chatRef} className="feed_chat">
-        {posts.map((item) => <Post key={item.fullDateTime}
-        date={item.fullDateTime}
-        type={item.type}
-        name={item.author} 
-        message={item.message} 
-        displayName={displayName}
-        photo={photoURL} />)}
+        {posts.map(({author, fullDateTime, message, type}) => (
+        <Post key={fullDateTime}
+        name={author}
+        type={type}
+        message={message}
+        date={fullDateTime}
+        photo={photoURL}
+        authUserName={displayName}
+        
+        />))}
     </ul>
     <div className="feed_message_field">
     <textarea 

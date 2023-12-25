@@ -1,5 +1,5 @@
 function Post(props) {
-  const { type, name, photo, message, date, displayName } = props;
+  const { type, name, photo, message, date, authUserName } = props;
 
   const postStyle = {
     alignSelf: "flex-end",
@@ -11,7 +11,7 @@ function Post(props) {
   return (
     <>
       {type === "message" && (
-        <li style={name === displayName ? postStyle : {}} className="post">
+        <li style={name === authUserName ? postStyle : {}} className="post">
           <div className="post_info">
             {photo ? <img src={photo} /> : <div className="post_avatar"></div>}
             <p className="post_author">{name}</p>

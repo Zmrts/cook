@@ -1,10 +1,13 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Form(props) {
-    const {title, buttonTitle, handleClick, errorMessage} = props;
+    const {title, buttonTitle, handleClick, errorMessage, from} = props;
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [focusedInput, setFocusedInput] = useState(null);
+    const navigate = useNavigate();
+
 
 
     const focusedStyles = {
@@ -21,7 +24,7 @@ function Form(props) {
         setFocusedInput(null);
     }
     const handleSubmit = async () => {
-      await  handleClick(email, password);
+      await  handleClick(email, password, () => navigate(from, {replace:true}));
         setEmail('');
         setPassword('');
     }

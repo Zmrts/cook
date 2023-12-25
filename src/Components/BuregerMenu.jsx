@@ -50,14 +50,12 @@ function BuregerMenu() {
  
 
   const handleTouchEnd = (evt) => {
-    console.log(offset);
     if (offset && (offset * - 1) > pageWidth / 3.2) {
       setTimeout(() => {
         setIsOpen(false);
       }, 20);
     } 
     if (offset && (offset * - 1) < pageWidth / 3.2) {
-        console.log('На открытие')
       setTimeout(() => {
         burgerListRef.current.style.transform = "translateX(0)";
       }, 20);

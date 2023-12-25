@@ -5,14 +5,13 @@ import App from './App';
 
 import { BrowserRouter } from 'react-router-dom';
 import './firebase'
-import { getAuth } from 'firebase/auth';
 import { getDatabase } from 'firebase/database'
+import { AuthProvider } from './hoc/AuthProvider';
 
 
 
 export const Context = createContext(null);
 
-const auth = getAuth();
 const database = getDatabase();
 
 
@@ -23,12 +22,13 @@ const database = getDatabase();
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <BrowserRouter>
+    <AuthProvider>
     <Context.Provider value={{
-        auth,
         database
     }}>
         <App />
     </Context.Provider>
+    </AuthProvider>
     </BrowserRouter>
     
 

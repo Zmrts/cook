@@ -2,11 +2,13 @@ import { useEffect, useRef, useState, useContext } from "react";
 import { increment, ref, update, push, child } from "firebase/database";
 import { Context } from "..";
 import { loadContext } from "../App";
+import { AuthContext } from "../hoc/AuthProvider";
 
 const RatingForm = (props) => {
-  const { userName, isShowForm, setIsShowForm, gradeFormRef } = props;
+  const { userName, isShowForm, setIsShowForm, gradeFormRef, userID } = props;
   const { database } = useContext(Context);
   const [grade, setGrade] = useState("Не выбрана");
+
 
   const hideGradeForm = () => {
     gradeFormRef.current.style.opacity = "0";
@@ -35,11 +37,11 @@ const RatingForm = (props) => {
     }
   };
 
-  const putGrade = async (coocker, grade) => {
+  const putGrade = async (userID, coocker, grade) => {
     if (grade === "Не выбрана" || coocker === "Не выбран") {
       alert("Ошибка! Оценка или пользователь определены.");
     } else {
-      const userRef = ref(database, `users/${coocker}`);
+      const userRef = ref(database, `users/${userID}`);
       const updates = {
         rating: increment(grade),
         quantity: increment(1),
@@ -131,7 +133,7 @@ const RatingForm = (props) => {
       </ul>
       <p>Пользователь: {userName}</p>
       <p>Оценка: {grade} </p>
-      <button onClick={() => putGrade(userName, grade)} className="grade_btn">
+      <button onClick={() => putGrade(userID,userName, grade)} className="grade_btn">
         Сохранить
       </button>
     </div>
@@ -139,18 +141,18 @@ const RatingForm = (props) => {
 };
 
 function CooksRatingItem(props) {
-  const { userName, averageRating, quantity, index, isCurrent } = props;
+  const { userName, averageRating, quantity, index, isCurrent, userID } = props;
   const [isShowForm, setIsShowForm] = useState(false);
   const gradeFormRef = useRef(null);
 
-  const { user } = useContext(loadContext);
-  console.log(userName);
+  const { user } = useContext(AuthContext);
+
 
   return (
     <li className={`cooks-item ${index === 0 ? "best" : ""}`}>
       {isCurrent && <div className="cooks-item_isCurrentCoock"></div>}
       <div className="cooks-item_avatar"></div>
-      <h3 className="cooks-item_name">{userName}</h3>
+      <h3 className="cooks-item_name">{`${userName}`}</h3>
       <div className="cooks-item_rating">
         <div>
           <p>
@@ -206,6 +208,7 @@ function CooksRatingItem(props) {
       </div>
       {isShowForm && (
         <RatingForm
+          userID={userID}
           gradeFormRef={gradeFormRef}
           setIsShowForm={setIsShowForm}
           isShowForm={isShowForm}

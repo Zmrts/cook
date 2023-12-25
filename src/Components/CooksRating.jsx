@@ -13,7 +13,6 @@ function CooksRating(props) {
     alignItems: 'center',
   }
 
-
   const getUsersRating = () => {
     const usersRef = ref(database, "users/");
     onValue(usersRef, (snapshot) => {
