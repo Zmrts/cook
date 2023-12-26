@@ -10,7 +10,7 @@ function HomePage() {
   const {user} = useContext(AuthContext);
 
   useEffect(() => {
-    if (user && user.emailVerified) {
+    if (user && !user.emailVerified) {
       setTimeout(() => {
         setShowModal(true);
       }, 3000);
