@@ -56,12 +56,12 @@ export const AuthProvider = ({children}) => {
 
     const auth = getAuth();
     const [user, loading] = useAuthState(auth);
-    const value = {user, loading, auth, authLoading, setAuthLoading, signIn, errorMessage}
+    const value = {user, loading, auth,  authLoading, setAuthLoading, signIn, errorMessage}
 
 
     
     return <AuthContext.Provider value={value}>
-      {loading ? <Loader /> :children}
+      {loading ? <Loader /> : children}
         
     </AuthContext.Provider>
 }

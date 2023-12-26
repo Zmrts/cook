@@ -1,12 +1,9 @@
 import { Routes, Route, Navigate } from "react-router-dom";
-
 import { Layout } from "../layouts/Layout";
 import { HomePage } from "../pages/HomePage";
-
 import { SettingsPage } from "../pages/SettingsPage";
 import { Login } from "./Login";
 import { RequireAuth } from "../hoc/RequireAuth";
-import { motion } from "framer-motion";
 import { SettingUsername } from "./Setting_Username";
 import { SettingEmail } from "./Setting_email";
 import { SettingAvatar } from "./Setting_avatar";

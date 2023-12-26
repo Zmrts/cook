@@ -2,7 +2,6 @@
 import { Navigate, useLocation } from "react-router-dom"
 import { AuthContext } from "./AuthProvider";
 import { useContext } from "react";
-import { Loader } from "../Components/Loader";
 
 function RequireAuth({children}) {
     const {auth, user, loading} = useContext(AuthContext);

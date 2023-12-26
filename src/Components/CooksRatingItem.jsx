@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState, useContext } from "react";
 import { increment, ref, update, push, child } from "firebase/database";
 import { Context } from "..";
-import { loadContext } from "../App";
 import { AuthContext } from "../hoc/AuthProvider";
 
 const RatingForm = (props) => {
@@ -54,8 +53,7 @@ const RatingForm = (props) => {
           hideGradeForm();
         }, 10);
       } catch (err) {
-        alert("Есть ошибка! Смотри консоль!");
-        console.log(err);
+        alert(err)
       }
     }
   };

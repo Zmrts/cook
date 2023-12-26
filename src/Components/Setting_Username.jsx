@@ -11,7 +11,7 @@ function SettingUsername() {
   const [userName, setUserName] = useState("");
 
   const isVaildUserName = (string) => {
-    const isValid = string.length && string.length > 3 && string.length <= 30 && /^[^\s.,:;!?\s]+(?:\s[^\s.,:;!?\s]+)*$/.test(string);
+    const isValid = string.length && string.length >= 3 && string.length <= 30 && /^[^\s.,:;!?\s]+(?:\s[^\s.,:;!?\s]+)*$/.test(string);
     return isValid;
   };
   const updateDataInDatabase = async (userID, newUserName) => {
@@ -35,7 +35,7 @@ function SettingUsername() {
         await updateDataInDatabase(auth.currentUser.uid, userName);
         setUserName('');
       } catch (err) {
-        console.log(err);
+        alert(err);
       } finally {
         setAuthLoading(false);
       }

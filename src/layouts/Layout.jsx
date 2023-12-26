@@ -1,5 +1,4 @@
 import { NavLink, useOutlet, useLocation } from "react-router-dom";
-import { Context } from "..";
 import React from "react";
 
 import { useState, useContext, useEffect, useLayoutEffect } from "react";
@@ -13,7 +12,7 @@ function Layout() {
   const dateOptions = { day: "numeric", month: "long" };
   const date = new Date().toLocaleDateString("ru-RU", dateOptions);
 
-  const { user, auth, loading } = useContext(AuthContext);
+  const { user, auth,} = useContext(AuthContext);
   
 
   const [isShowBurger, setIsShowBureger] = useState(null);
@@ -42,7 +41,7 @@ function Layout() {
     try {
       signOut(auth);
     } catch (err) {
-      console.log("Ошибка", err);
+      alert(err);
     }
   };
 
