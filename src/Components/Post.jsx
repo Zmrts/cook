@@ -1,5 +1,7 @@
+
+import { UserAvatar } from "./UserAvatar";
 function Post(props) {
-  const { type, name, photo, message, date, authUserName } = props;
+  const {isAnonym, type, name, photo, message, date, authUserName, } = props;
 
   const postStyle = {
     alignSelf: "flex-end",
@@ -13,7 +15,7 @@ function Post(props) {
       {type === "message" && (
         <li style={name === authUserName ? postStyle : {}} className="post">
           <div className="post_info">
-            {photo ? <img src={photo} /> : <div className="post_avatar"></div>}
+            <UserAvatar imageSRC={photo} />
             <p className="post_author">{name}</p>
           </div>
           <p className="post_content">{message}</p>

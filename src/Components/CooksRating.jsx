@@ -17,6 +17,7 @@ function CooksRating(props) {
     const usersRef = ref(database, "users/");
     onValue(usersRef, (snapshot) => {
       const data = snapshot.val();
+      console.log(data);
       const dataArray = Object.values(data).map((item) => {
         if (item.rating === 0 || item.quantity === 0)
           return { averageRating: 0, ...item };
@@ -29,7 +30,7 @@ function CooksRating(props) {
     });
   };
 
-  
+  console.log(usersRating);
 
 
   useEffect(() => {

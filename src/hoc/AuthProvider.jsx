@@ -58,7 +58,6 @@ export const AuthProvider = ({children}) => {
     const [user, loading] = useAuthState(auth);
     const value = {user, loading, auth,  authLoading, setAuthLoading, signIn, errorMessage}
 
-
     
     return <AuthContext.Provider value={value}>
       {loading ? <Loader /> : children}

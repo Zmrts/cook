@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, useContext } from "react";
 import { increment, ref, update, push, child } from "firebase/database";
+import { UserAvatar } from "./UserAvatar";
 import { Context } from "..";
 import { AuthContext } from "../hoc/AuthProvider";
 
@@ -139,9 +140,10 @@ const RatingForm = (props) => {
 };
 
 function CooksRatingItem(props) {
-  const { userName, averageRating, quantity, index, isCurrent, userID } = props;
+  const { userName, averageRating, quantity, index, isCurrent, userID, photoURL} = props;
   const [isShowForm, setIsShowForm] = useState(false);
   const gradeFormRef = useRef(null);
+
 
   const { user } = useContext(AuthContext);
 
@@ -149,7 +151,7 @@ function CooksRatingItem(props) {
   return (
     <li className={`cooks-item ${index === 0 ? "best" : ""}`}>
       {isCurrent && <div className="cooks-item_isCurrentCoock"></div>}
-      <div className="cooks-item_avatar"></div>
+      <UserAvatar imageSRC = {photoURL} />
       <h3 className="cooks-item_name">{`${userName}`}</h3>
       <div className="cooks-item_rating">
         <div>
