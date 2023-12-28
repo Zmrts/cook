@@ -15,7 +15,7 @@ function SettingUsername() {
     return isValid;
   };
   const updateDataInDatabase = async (userID, newUserName) => {
-      const userRef = ref(database, `users/`);
+      const userRef = ref(database, `users/${userID}`);
       const updates = {
         userName:newUserName,
       }

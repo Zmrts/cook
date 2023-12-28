@@ -42,16 +42,15 @@ function Feed() {
                 const userData = snapshot.val();
                 userLinks[post.userID].photoURL = userData.photoURL;
                 userLinks[post.userID].author = userData.userName; 
-                console.log(userLinks);
+
                 post.photoURL = userData.photoURL;
                 post.author = userData.userName;
-                console.log('ПОСТ',post);
+
               });
               setPosts(dataArray);
             }
           }
         });
-        console.log('dataARRAY', dataArray);
       } else {
         setPosts([]);
         console.error("Ошибка при получении данных (/posts)");
