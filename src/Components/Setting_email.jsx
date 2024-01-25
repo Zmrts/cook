@@ -95,6 +95,7 @@ function SettingEmail() {
         
         transition={{ duration: 0.3, ease: easeInOut}}
       >
+        <h2>Email</h2>
         <p>Текущий Email: <span style={{fontWeight:'600'}}>{user.email}</span></p>
         <p >Статус: {emailIsVerified 
         ? <span style={emailIsVerify.styles}>{emailIsVerify.status}</span>

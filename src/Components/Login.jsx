@@ -22,7 +22,7 @@ function Login() {
   return (
     <div className="login">
 
-       ? <Form errorMessage={errorMessage} title="Вход" buttonTitle="Войти" handleClick={signIn} from={fromPage} /> 
+       <Form errorMessage={errorMessage} title="Вход" buttonTitle="Войти" handleClick={signIn} from={fromPage} /> 
 
     </div>
   );

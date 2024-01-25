@@ -9,9 +9,8 @@ import { ref } from "firebase/storage";
 
 function App() {
   const {storage} = useContext(Context);
-  console.log(storage);
   const storageRef = ref(storage, 'images');
-  console.log(storageRef);
+
 
   const {authLoading} = useContext(AuthContext);
 

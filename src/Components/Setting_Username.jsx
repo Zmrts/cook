@@ -56,10 +56,11 @@ function SettingUsername() {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.2, ease: easeInOut }}
     >
+      <h2>Имя пользователя</h2>
       <p>Текущее имя: <span style={{fontWeight:'600'}}>{user.displayName}</span></p>
       <div style={{ display: "flex", gap: "0.5rem" }} className="setting_input">
         <span>Новое имя:</span>
-        <input value={userName} onChange={handleChange} type="text" />
+        <input value={userName} onChange={handleChange} type="text"/>
       </div>
       <button onClick={updateUserName} className="setting_button_save">Применить</button>
     </motion.div>

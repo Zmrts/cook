@@ -29,7 +29,6 @@ function CooksRating(props) {
       
     });
   };
-
  
 
 

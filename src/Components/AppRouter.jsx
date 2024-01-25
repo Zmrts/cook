@@ -8,6 +8,7 @@ import { SettingUsername } from "./Setting_Username";
 import { SettingEmail } from "./Setting_email";
 import { SettingAvatar } from "./Setting_avatar";
 import { SettingPassword } from "./Setting_password";
+import { SettingsHome } from "./SettingsHome";
 
 function AppRouter() {
   return (
@@ -22,7 +23,7 @@ function AppRouter() {
       >
         <Route index element={<HomePage />} />
         <Route path="settings" element={<SettingsPage />}>
-          <Route index element={<h2>SETTINGS HOME</h2>}></Route>
+          <Route index  element={<SettingsHome />}></Route>
           <Route path="username" element={<SettingUsername />}></Route>
           <Route path="email" element={<SettingEmail />}></Route>
           <Route path="avatar" element={<SettingAvatar />}></Route>

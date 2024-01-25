@@ -100,13 +100,19 @@ background-attachment: fixed;
   font-weight: 300;
   letter-spacing: 2px;
   line-height: 20px;
-
 }
-.header_links_item:hover {
-  color: var(--seaColor);
+.header_links_item > svg {
+  width: 28px;
+  height: 28px;
 }
-.header_links_item.active {
-  color: var(--seaColor);
+.header_links_item > svg path {
+  fill: #fff;
+}
+.header_links_item:hover > svg path {
+  fill: var(--seaColor);
+}
+.header_links_item.active  > svg path {
+  fill: var(--seaColor);
 }
 
 
@@ -629,6 +635,7 @@ overflow-wrap: anywhere;
   width: 100%;
 }
 
+
 .form {
   background-color: var(--primary-background);
   position: relative;
@@ -638,6 +645,15 @@ overflow-wrap: anywhere;
   padding: 3rem;
   border-radius: 12px;
   border: 1px solid gray;
+  animation:fade 2s ease-out;
+}
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 .form > h2 {
   font-weight: 300;
@@ -749,6 +765,9 @@ overflow-wrap: anywhere;
   }
   .post {
     max-width: 85%;
+  }
+  .setting {
+    margin: 0 !important;
   }
 
 
@@ -937,16 +956,18 @@ transform: scale(1.1);
 
 .setting {
   margin: 0 auto;
-  align-items: flex-start;
   display: flex;
   flex-direction: column;
   gap: 1rem;
+
 
 }
 
 .setting_input {
   display: flex;
   align-items: center;
+  gap: 0.5rem;
+
 }
 .setting_input > input {
   color: #fff;
@@ -955,6 +976,7 @@ transform: scale(1.1);
   border: 1px solid #fff;
   border-radius: 4px;
   font-size: 1rem;
+
   
 }
 
@@ -965,8 +987,14 @@ transform: scale(1.1);
   border-radius: 15px;  
   transition: all 0.15s ease;
   color: black;
+  font-size: 13px;
+  background-color: #fff;
+  cursor: pointer;
 
   
+}
+.settings_password > .setting_input {
+  justify-content: space-between;
 }
 .setting_button_save:hover {
   background-color: #3fe964;
@@ -975,7 +1003,12 @@ transform: scale(1.1);
 .setting_button_save:active{
   transform: scale(0.95);
 }
-
+#upload-file_input {
+  display: none;
+}
+.setting > h2 {
+  align-self: center;
+}
 .currentAvatar {
   display: flex;
   flex-direction: column;
@@ -1004,6 +1037,7 @@ transform: scale(1.1);
     transform: scale(1);
   }
 }
+
 .modal {
   font-size: 14px;
   text-align:center;
